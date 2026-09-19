@@ -1,0 +1,197 @@
+[
+  {
+    "file": "la-city-storefront-facade.glb",
+    "description": "storefront facade with shutter, windows and sign band",
+    "dimensions_m": [
+      8.0,
+      5.8,
+      0.695
+    ],
+    "expected_dimensions_m": [
+      8.0,
+      5.8,
+      0.45
+    ],
+    "triangles": 108,
+    "bytes": 10108,
+    "materials": [
+      "charcoal",
+      "brick",
+      "cream",
+      "window",
+      "metal",
+      "amber"
+    ]
+  },
+  {
+    "file": "la-city-corner-facade.glb",
+    "description": "L-shaped corner facade with two readable street faces",
+    "dimensions_m": [
+      8.005,
+      5.8,
+      8.005
+    ],
+    "expected_dimensions_m": [
+      8.0,
+      5.8,
+      8.0
+    ],
+    "triangles": 120,
+    "bytes": 10040,
+    "materials": [
+      "charcoal",
+      "brick",
+      "window",
+      "cream",
+      "amber"
+    ]
+  },
+  {
+    "file": "la-city-alley-wall.glb",
+    "description": "alley service wall with door, boarded panel and high window",
+    "dimensions_m": [
+      6.0,
+      5.5,
+      0.67
+    ],
+    "expected_dimensions_m": [
+      6.0,
+      5.5,
+      0.42
+    ],
+    "triangles": 60,
+    "bytes": 6984,
+    "materials": [
+      "concrete",
+      "metal",
+      "brick",
+      "window",
+      "amber"
+    ]
+  },
+  {
+    "file": "la-city-sidewalk-curb.glb",
+    "description": "sidewalk and curb module with expansion seams",
+    "dimensions_m": [
+      8.0,
+      0.25,
+      2.375
+    ],
+    "expected_dimensions_m": [
+      8.0,
+      0.25,
+      2.25
+    ],
+    "triangles": 60,
+    "bytes": 4868,
+    "materials": [
+      "concrete",
+      "charcoal"
+    ]
+  },
+  {
+    "file": "la-city-intersection-road.glb",
+    "description": "16 metre asphalt intersection tile with faded crosswalk markings",
+    "dimensions_m": [
+      16.0,
+      0.1,
+      16.0
+    ],
+    "expected_dimensions_m": [
+      16.0,
+      0.08,
+      16.0
+    ],
+    "triangles": 132,
+    "bytes": 8760,
+    "materials": [
+      "charcoal",
+      "cream"
+    ]
+  },
+  {
+    "file": "la-city-streetlight-anime.glb",
+    "description": "low-poly streetlight with a warm lamp head",
+    "dimensions_m": [
+      1.29,
+      4.77,
+      0.44
+    ],
+    "expected_dimensions_m": [
+      1.25,
+      4.78,
+      0.44
+    ],
+    "triangles": 88,
+    "bytes": 7148,
+    "materials": [
+      "metal",
+      "amber"
+    ]
+  },
+  {
+    "file": "la-city-dumpster-anime.glb",
+    "description": "anime-styled dumpster with lid, wheels and a readable front panel",
+    "dimensions_m": [
+      2.25,
+      1.385,
+      1.205
+    ],
+    "expected_dimensions_m": [
+      2.25,
+      1.43,
+      1.17
+    ],
+    "triangles": 164,
+    "bytes": 12704,
+    "materials": [
+      "olive",
+      "metal",
+      "cream"
+    ]
+  },
+  {
+    "file": "la-zombie-shambler-anime.glb",
+    "description": "toxic-green anime shambler; runtime idle/walk sway ready",
+    "dimensions_m": [
+      1.207,
+      1.985,
+      0.701
+    ],
+    "expected_dimensions_m": [
+      0.96,
+      1.99,
+      0.61
+    ],
+    "triangles": 800,
+    "bytes": 54920,
+    "materials": [
+      "metal",
+      "olive",
+      "brick",
+      "cream",
+      "red"
+    ]
+  },
+  {
+    "file": "la-bow-recurve-pov.glb",
+    "description": "low-poly recurve bow for first-person camera use",
+    "dimensions_m": [
+      0.295,
+      1.62,
+      0.12
+    ],
+    "expected_dimensions_m": [
+      0.4,
+      1.62,
+      0.14
+    ],
+    "triangles": 84,
+    "bytes": 6936,
+    "materials": [
+      "amber",
+      "metal",
+      "cream"
+    ]
+  }
+]
