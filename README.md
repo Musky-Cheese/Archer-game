@@ -1,6 +1,6 @@
-# Last Archer V2.3
+# Last Archer V2.3.1
 
-Last Archer is a browser-based first-person zombie survival game built with Three.js. Move through an expanded low-poly district, draw and release arrows, survive enemy waves, collect temporary powers, and earn permanent upgrades between runs.
+Last Archer is a browser-based first-person zombie survival game built with Three.js. Move through an expanded low-poly district, draw and release arrows, survive enemy waves, collect temporary powers, and earn permanent upgrades between runs. V2.3.1 places the Blender-built environment kit prominently around the starting district.
 
 ## Play
 
@@ -35,7 +35,7 @@ Every model is an independent binary GLB with a base-center pivot, meter scale, 
 
 ## Project files
 
-- `index.html` — current playable V2.3 build
+- `index.html` — current playable V2.3.1 build
 - `preview.png` — tested gameplay preview
 - `style-lab.html` — earlier zombie style comparison
 - `assets/environment-kit/` — GLBs, previews, manifest, and editable Blender source

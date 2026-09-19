@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#12151a">
 <meta name="description" content="Last Archer is a fast, funny browser survival game. Hold the line, loose arrows, and outlast the undead.">
-<title>Last Archer V2.3 — Portable Asset District</title>
+<title>Last Archer V2.3.1 — Blender District</title>
 <style>
   :root{
     --bg-deep:#12151a;
@@ -4125,7 +4125,7 @@
 
   <div id="start-screen" class="overlay">
     <div class="panel panel-wide">
-      <p class="eyebrow">V2.3 · Portable Asset District</p>
+      <p class="eyebrow">V2.3.1 · Blender District</p>
       <h1>LAST ARCHER</h1>
       <p class="tagline">The dead don't stop walking. Now the district is built from reusable Blender assets.</p>
       <div class="controls-hint">
@@ -4319,28 +4319,35 @@
 
   function buildPortableAssetLayer(){
     [
-      {key:'billboard',x:27,z:-43,rotation:.24,radius:2.8,ads:[
+      // The first cluster sits directly in the player's opening view so the Blender upgrade is obvious.
+      {key:'billboard',x:10,z:-19,rotation:0,radius:2.8,ads:[
         {id:'BILLBOARD_01',w:6.0,h:3.0,x:0,y:4.45,z:.19},
         {id:'BILLBOARD_01',w:6.0,h:3.0,x:0,y:4.45,z:-.19,rotation:Math.PI}
       ]},
-      {key:'vending',x:43,z:-5,rotation:-Math.PI/2,radius:1.3,ads:[
+      {key:'vending',x:-5,z:-8,rotation:0,radius:1.3,ads:[
         {id:'VENDING_01',w:1.66,h:.68,x:0,y:2.65,z:.59}
       ]},
-      {key:'barricade',x:25,z:18,rotation:.34,radius:2.45,ads:[
+      {key:'barricade',x:6,z:-9,rotation:0,radius:2.45,ads:[
         {id:'BARRICADE_SPONSOR',w:3.65,h:.68,x:0,y:1.1,z:.25}
       ]},
-      {key:'crate',x:43,z:12,rotation:-.28,radius:1.65,ads:[
+      {key:'barricade',x:-16,z:-24,rotation:.28,radius:2.45,ads:[
+        {id:'BARRICADE_SPONSOR',w:3.65,h:.68,x:0,y:1.1,z:.25}
+      ]},
+      {key:'crate',x:-11,z:-12,rotation:-.18,radius:1.65,ads:[
         {id:'CRATE_SPONSOR',w:1.5,h:.76,x:0,y:1.05,z:1.14}
       ]},
-      {key:'highway_sign',x:-31,z:52,rotation:0,radius:2.3,ads:[
+      {key:'crate',x:17,z:-12,rotation:.22,radius:1.65,ads:[
+        {id:'CRATE_SPONSOR',w:1.5,h:.76,x:0,y:1.05,z:1.14}
+      ]},
+      {key:'highway_sign',x:-10,z:-24,rotation:0,radius:2.3,ads:[
         {id:'ROAD_SIGN_01',w:4.8,h:2.06,x:0,y:4.2,z:.17},
         {id:'ROAD_SIGN_01',w:4.8,h:2.06,x:0,y:4.2,z:-.17,rotation:Math.PI}
       ]},
-      {key:'streetlight',x:31,z:-13,rotation:Math.PI,radius:.35},
-      {key:'streetlight',x:31,z:7,rotation:Math.PI,radius:.35},
-      {key:'roadblock',x:-14,z:34,rotation:.12,radius:2.2},
-      {key:'car',x:6,z:39,rotation:-.18,radius:2.35},
-      {key:'container',x:-15,z:43,rotation:.2,radius:3.2,ads:[
+      {key:'streetlight',x:-3,z:-15,rotation:Math.PI,radius:.35},
+      {key:'streetlight',x:4,z:-15,rotation:Math.PI,radius:.35},
+      {key:'roadblock',x:15,z:-25,rotation:.12,radius:2.2},
+      {key:'car',x:13,z:-11,rotation:-.18,radius:2.35},
+      {key:'container',x:21,z:-31,rotation:.2,radius:3.2,ads:[
         {id:'BILLBOARD_02',w:3.45,h:1.16,x:0,y:1.35,z:1.29}
       ]}
     ].forEach(spawnPortableAsset);
