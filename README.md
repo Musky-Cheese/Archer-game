@@ -1,20 +1,45 @@
-# Last Archer
+# Last Archer V2.3
 
-A browser-based first-person zombie survival game — bow and arrow vs. a low-poly horde. Built with Three.js, runs entirely in the browser, no install needed.
+Last Archer is a browser-based first-person zombie survival game built with Three.js. Move through an expanded low-poly district, draw and release arrows, survive enemy waves, collect temporary powers, and earn permanent upgrades between runs.
 
-## Play it
+## Play
 
-Once GitHub Pages is turned on for this repo (Settings → Pages → Deploy from branch → main → /root), the game is live at:
+The GitHub Pages deployment is configured at:
 
-`https://<your-username>.github.io/<repo-name>/`
+**https://musky-cheese.github.io/Archer-game/**
 
-Open `index.html` directly (or that Pages link) and play.
+The game is self-contained in `index.html`. Three.js, the GLB loader, and the runtime environment models are embedded, so the deployed game does not depend on a third-party CDN.
 
-## Files
+## Controls
 
-- `index.html` — the game itself
-- `style-lab.html` — a side-by-side comparison of the zombie art styles that were considered before landing on the current low-poly look
+- Move: WASD, arrow keys, or the on-screen pad
+- Aim: mouse or drag the arena on touch devices
+- Shoot: hold click or FIRE to draw, then release
+- Pause: Escape, P, or the pause button
 
-## Editing
+## Portable environment kit
 
-The whole game is a single self-contained HTML file (`index.html`) — HTML, CSS and JavaScript all in one place, using Three.js loaded from a CDN. Open it in any code editor, make changes, and refresh the page (or the Pages link) to see them.
+`assets/environment-kit/` contains nine reusable Blender-made assets:
+
+- Billboard
+- Vending machine
+- Sponsored barricade
+- Supply crate
+- Highway sign
+- Streetlight
+- Concrete roadblock
+- Abandoned car
+- Shipping container
+
+Every model is an independent binary GLB with a base-center pivot, meter scale, flat colors, no external textures, and its own preview. See [`assets/environment-kit/manifest.md`](assets/environment-kit/manifest.md) for dimensions, triangle counts, and file sizes.
+
+## Project files
+
+- `index.html` — current playable V2.3 build
+- `preview.png` — tested gameplay preview
+- `style-lab.html` — earlier zombie style comparison
+- `assets/environment-kit/` — GLBs, previews, manifest, and editable Blender source
+
+## Deployment
+
+Pushing to `main` triggers the GitHub Pages workflow in `.github/workflows/pages.yml`.

@@ -1,0 +1,2 @@
+Last Archer environment kit completed in Blender 5.2.2 LTS
+Assets: LA_Billboard_Large, LA_VendingMachine, LA_SponsoredBarricade, LA_SupplyCrate, LA_HighwaySign, LA_Streetlight, LA_ConcreteRoadblock, LA_AbandonedCar, LA_ShippingContainer

@@ -1,0 +1,148 @@
+{
+  "name": "Last Archer Portable Environment Kit",
+  "version": "1.0.0",
+  "license": "Created for the user's Last Archer project; reusable in the user's other projects.",
+  "coordinate_system": "Blender Z-up; GLB export uses glTF Y-up",
+  "units": "meters",
+  "master_blend": "last-archer-environment-kit.blend",
+  "delivery": "Each asset is exported as its own binary GLB. No combined GLB is included.",
+  "shading": "Flat-shaded low-poly geometry with simple colors and no texture maps.",
+  "editable_ad_material_prefix": "AD_SURFACE_",
+  "assets": [
+    {
+      "name": "LA_Billboard_Large",
+      "file": "individual-assets/la-billboard-large.glb",
+      "preview": "previews/la-billboard-large.png",
+      "root_object": "LA_Billboard_Large",
+      "units": "meters",
+      "dimensions_m": {
+        "width_x": 6.4,
+        "depth_y": 0.75,
+        "height_z": 6.15
+      },
+      "triangles": 308,
+      "file_size_kb": 27.4,
+      "description": "Large two-sided roadside billboard with two sponsor-ready face materials."
+    },
+    {
+      "name": "LA_VendingMachine",
+      "file": "individual-assets/la-vendingmachine.glb",
+      "preview": "previews/la-vendingmachine.png",
+      "root_object": "LA_VendingMachine",
+      "units": "meters",
+      "dimensions_m": {
+        "width_x": 2.0,
+        "depth_y": 1.155,
+        "height_z": 3.4
+      },
+      "triangles": 484,
+      "file_size_kb": 42.8,
+      "description": "Chunky survivor-zone vending machine with a replaceable top ad panel."
+    },
+    {
+      "name": "LA_SponsoredBarricade",
+      "file": "individual-assets/la-sponsoredbarricade.glb",
+      "preview": "previews/la-sponsoredbarricade.png",
+      "root_object": "LA_SponsoredBarricade",
+      "units": "meters",
+      "dimensions_m": {
+        "width_x": 4.712,
+        "depth_y": 1.495,
+        "height_z": 2.028
+      },
+      "triangles": 264,
+      "file_size_kb": 23.8,
+      "description": "Portable safe-zone barricade with a wide sponsor panel."
+    },
+    {
+      "name": "LA_SupplyCrate",
+      "file": "individual-assets/la-supplycrate.glb",
+      "preview": "previews/la-supplycrate.png",
+      "root_object": "LA_SupplyCrate",
+      "units": "meters",
+      "dimensions_m": {
+        "width_x": 2.25,
+        "depth_y": 2.21,
+        "height_z": 2.12
+      },
+      "triangles": 264,
+      "file_size_kb": 23.6,
+      "description": "Wood-and-metal supply crate with a replaceable front sponsor plate."
+    },
+    {
+      "name": "LA_HighwaySign",
+      "file": "individual-assets/la-highwaysign.glb",
+      "preview": "previews/la-highwaysign.png",
+      "root_object": "LA_HighwaySign",
+      "units": "meters",
+      "dimensions_m": {
+        "width_x": 5.2,
+        "depth_y": 0.35,
+        "height_z": 5.425
+      },
+      "triangles": 684,
+      "file_size_kb": 49.4,
+      "description": "Two-sided highway sign on metal posts with editable sign faces."
+    },
+    {
+      "name": "LA_Streetlight",
+      "file": "individual-assets/la-streetlight.glb",
+      "preview": "previews/la-streetlight.png",
+      "root_object": "LA_Streetlight",
+      "units": "meters",
+      "dimensions_m": {
+        "width_x": 1.984,
+        "depth_y": 0.7,
+        "height_z": 5.32
+      },
+      "triangles": 408,
+      "file_size_kb": 32.0,
+      "description": "Bent urban streetlight with a warm low-poly lamp head."
+    },
+    {
+      "name": "LA_ConcreteRoadblock",
+      "file": "individual-assets/la-concreteroadblock.glb",
+      "preview": "previews/la-concreteroadblock.png",
+      "root_object": "LA_ConcreteRoadblock",
+      "units": "meters",
+      "dimensions_m": {
+        "width_x": 4.2,
+        "depth_y": 1.22,
+        "height_z": 1.2
+      },
+      "triangles": 88,
+      "file_size_kb": 8.5,
+      "description": "Simple concrete traffic barrier with a faded danger stripe."
+    },
+    {
+      "name": "LA_AbandonedCar",
+      "file": "individual-assets/la-abandonedcar.glb",
+      "preview": "previews/la-abandonedcar.png",
+      "root_object": "LA_AbandonedCar",
+      "units": "meters",
+      "dimensions_m": {
+        "width_x": 4.45,
+        "depth_y": 2.18,
+        "height_z": 1.82
+      },
+      "triangles": 692,
+      "file_size_kb": 49.8,
+      "description": "Compact low-poly abandoned car with faceted body, cabin, and wheels."
+    },
+    {
+      "name": "LA_ShippingContainer",
+      "file": "individual-assets/la-shippingcontainer.glb",
+      "preview": "previews/la-shippingcontainer.png",
+      "root_object": "LA_ShippingContainer",
+      "units": "meters",
+      "dimensions_m": {
+        "width_x": 6.1,
+        "depth_y": 2.53,
+        "height_z": 2.55
+      },
+      "triangles": 572,
+      "file_size_kb": 49.3,
+      "description": "Ribbed shipping container with a large replaceable side ad panel."
+    }
+  ]
+}
