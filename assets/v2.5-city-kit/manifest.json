@@ -1,50 +1,55 @@
 [
   {
     "file": "la-city-storefront-facade.glb",
-    "description": "storefront facade with shutter, windows and sign band",
     "dimensions_m": [
-      8.0,
-      5.8,
-      0.695
+      8.12,
+      10.0,
+      5.38
     ],
-    "expected_dimensions_m": [
-      8.0,
-      5.8,
-      0.45
+    "bounds_min": [
+      -4.06,
+      0.0,
+      -2.8200000000000003
     ],
-    "triangles": 108,
-    "bytes": 10108,
+    "bounds_max": [
+      4.06,
+      10.0,
+      2.56
+    ],
+    "triangles": 468,
+    "bytes": 51452,
     "materials": [
-      "charcoal",
-      "brick",
-      "cream",
-      "window",
-      "metal",
-      "amber"
-    ]
+      "VertexPalette"
+    ],
+    "textures": [],
+    "animations": [],
+    "description": "Three-storey storefront building with windows on both flanks"
   },
   {
     "file": "la-city-corner-facade.glb",
-    "description": "L-shaped corner facade with two readable street faces",
     "dimensions_m": [
-      8.005,
-      5.8,
-      8.005
+      8.12,
+      12.0,
+      5.38
     ],
-    "expected_dimensions_m": [
-      8.0,
-      5.8,
-      8.0
+    "bounds_min": [
+      -4.06,
+      0.0,
+      -2.8200000000000003
     ],
-    "triangles": 120,
-    "bytes": 10040,
+    "bounds_max": [
+      4.06,
+      12.0,
+      2.56
+    ],
+    "triangles": 468,
+    "bytes": 51448,
     "materials": [
-      "charcoal",
-      "brick",
-      "window",
-      "cream",
-      "amber"
-    ]
+      "VertexPalette"
+    ],
+    "textures": [],
+    "animations": [],
+    "description": "Four-storey brick corner block with windows on both flanks"
   },
   {
     "file": "la-city-alley-wall.glb",
@@ -67,7 +72,9 @@
       "brick",
       "window",
       "amber"
-    ]
+    ],
+    "textures": [],
+    "animations": []
   },
   {
     "file": "la-city-sidewalk-curb.glb",
@@ -87,7 +94,9 @@
     "materials": [
       "concrete",
       "charcoal"
-    ]
+    ],
+    "textures": [],
+    "animations": []
   },
   {
     "file": "la-city-intersection-road.glb",
@@ -107,7 +116,9 @@
     "materials": [
       "charcoal",
       "cream"
-    ]
+    ],
+    "textures": [],
+    "animations": []
   },
   {
     "file": "la-city-streetlight-anime.glb",
@@ -127,7 +138,9 @@
     "materials": [
       "metal",
       "amber"
-    ]
+    ],
+    "textures": [],
+    "animations": []
   },
   {
     "file": "la-city-dumpster-anime.glb",
@@ -148,50 +161,118 @@
       "olive",
       "metal",
       "cream"
-    ]
+    ],
+    "textures": [],
+    "animations": []
   },
   {
     "file": "la-zombie-shambler-anime.glb",
-    "description": "toxic-green anime shambler; runtime idle/walk sway ready",
     "dimensions_m": [
-      1.207,
-      1.985,
-      0.701
+      0.978,
+      1.9,
+      0.465
     ],
-    "expected_dimensions_m": [
-      0.96,
-      1.99,
-      0.61
+    "bounds_min": [
+      -0.48900000000000005,
+      0,
+      -0.3
     ],
-    "triangles": 800,
-    "bytes": 54920,
+    "bounds_max": [
+      0.48900000000000005,
+      1.9,
+      0.165
+    ],
+    "triangles": 788,
+    "bytes": 149044,
     "materials": [
-      "metal",
-      "olive",
-      "brick",
-      "cream",
-      "red"
-    ]
+      "VertexPalette"
+    ],
+    "textures": [],
+    "animations": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "Hit",
+      "Death"
+    ],
+    "description": "Faceted worker shambler, humanoid rig and five in-place clips"
   },
   {
     "file": "la-bow-recurve-pov.glb",
-    "description": "low-poly recurve bow for first-person camera use",
     "dimensions_m": [
-      0.295,
-      1.62,
-      0.12
+      0.119,
+      1.36,
+      0.173
     ],
-    "expected_dimensions_m": [
-      0.4,
-      1.62,
-      0.14
+    "bounds_min": [
+      -0.08,
+      0.019999999999999907,
+      -0.131
     ],
-    "triangles": 84,
-    "bytes": 6936,
+    "bounds_max": [
+      0.0395,
+      1.38,
+      0.042
+    ],
+    "triangles": 188,
+    "bytes": 21420,
     "materials": [
-      "amber",
-      "metal",
-      "cream"
-    ]
+      "VertexPalette"
+    ],
+    "textures": [],
+    "animations": [],
+    "description": "Slim recurve bow with grip and named string/arrow attachments"
+  },
+  {
+    "file": "la-hand-grip.glb",
+    "dimensions_m": [
+      0.169,
+      0.41,
+      0.154
+    ],
+    "bounds_min": [
+      -0.07,
+      0,
+      -0.08449999999999999
+    ],
+    "bounds_max": [
+      0.09949999999999999,
+      0.41000000000000003,
+      0.06928203230275509
+    ],
+    "triangles": 124,
+    "bytes": 14324,
+    "materials": [
+      "VertexPalette"
+    ],
+    "textures": [],
+    "animations": [],
+    "description": "Separate gloved-sleeve grip hand"
+  },
+  {
+    "file": "la-hand-draw.glb",
+    "dimensions_m": [
+      0.169,
+      0.41,
+      0.154
+    ],
+    "bounds_min": [
+      -0.07,
+      0,
+      -0.08449999999999999
+    ],
+    "bounds_max": [
+      0.09949999999999999,
+      0.41000000000000003,
+      0.06928203230275509
+    ],
+    "triangles": 124,
+    "bytes": 14324,
+    "materials": [
+      "VertexPalette"
+    ],
+    "textures": [],
+    "animations": [],
+    "description": "Separate gloved-sleeve draw hand"
   }
 ]

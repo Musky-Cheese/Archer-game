@@ -1,0 +1,177 @@
+{
+  "passed": true,
+  "checks": [
+    "load",
+    "grounding",
+    "rigged actors",
+    "movement",
+    "pause",
+    "near/medium/far hits",
+    "cover occlusion",
+    "pickups",
+    "touch cancellation/release",
+    "pause while drawing",
+    "stable draw resources",
+    "crate penetration recovery",
+    "restart",
+    "40 animated actors",
+    "review profile save",
+    "ad replacement",
+    "portrait/landscape layout"
+  ],
+  "desktop": {
+    "assets": {
+      "requested": 11,
+      "loaded": 11,
+      "failed": 0,
+      "placements": 16
+    },
+    "ready": true,
+    "solids": 36,
+    "grounding": [
+      {
+        "name": "la-city-storefront-facade",
+        "minY": 0
+      },
+      {
+        "name": "la-city-storefront-facade",
+        "minY": 0
+      },
+      {
+        "name": "la-city-storefront-facade",
+        "minY": 0
+      },
+      {
+        "name": "la-city-storefront-facade",
+        "minY": 0
+      },
+      {
+        "name": "la-city-corner-facade",
+        "minY": 0
+      },
+      {
+        "name": "la-city-storefront-facade",
+        "minY": 0
+      },
+      {
+        "name": "la-city-corner-facade",
+        "minY": 0
+      },
+      {
+        "name": "la-city-storefront-facade",
+        "minY": 0
+      },
+      {
+        "name": "la-city-corner-facade",
+        "minY": 0
+      },
+      {
+        "name": "la-city-storefront-facade",
+        "minY": 0
+      },
+      {
+        "name": "la-city-streetlight-anime",
+        "minY": 0
+      },
+      {
+        "name": "la-city-streetlight-anime",
+        "minY": 0
+      },
+      {
+        "name": "la-city-streetlight-anime",
+        "minY": 0
+      },
+      {
+        "name": "la-city-streetlight-anime",
+        "minY": 0
+      },
+      {
+        "name": "la-city-dumpster-anime",
+        "minY": 0
+      },
+      {
+        "name": "la-city-dumpster-anime",
+        "minY": 0
+      }
+    ],
+    "render": {
+      "calls": 37,
+      "triangles": 9186
+    },
+    "memory": {
+      "geometries": 28,
+      "textures": 19
+    },
+    "enemies": 3,
+    "animated": 3,
+    "state": "paused",
+    "player": {
+      "x": 1,
+      "z": 11
+    },
+    "arrows": 0,
+    "shots": 0,
+    "score": 0,
+    "buffs": [],
+    "charge": 0,
+    "weapon": {
+      "foreground": true,
+      "draw": false,
+      "release": 0
+    },
+    "frames": [
+      50,
+      50,
+      16.60000000000003,
+      50,
+      16.60000000000006,
+      16.599999999999948,
+      16.800000000000036,
+      16.60000000000006,
+      16.69999999999994,
+      16.70000000000005,
+      16.899999999999913,
+      16.50000000000007,
+      16.599999999999948,
+      16.60000000000006,
+      16.69999999999994,
+      16.800000000000036,
+      16.69999999999994,
+      16.499999999999957,
+      16.900000000000027,
+      16.499999999999957,
+      17.000000000000014,
+      16.50000000000007,
+      16.40000000000008,
+      16.799999999999926,
+      16.60000000000006,
+      16.599999999999948,
+      16.69999999999994,
+      16.800000000000146,
+      16.799999999999926
+    ]
+  },
+  "stress": {
+    "enemies": 40,
+    "animated": 40,
+    "render": {
+      "calls": 74,
+      "triangles": 38786
+    },
+    "memory": {
+      "geometries": 30,
+      "textures": 57
+    }
+  },
+  "resources": {
+    "initial": {
+      "geometries": 30,
+      "textures": 17
+    },
+    "after": {
+      "geometries": 30,
+      "textures": 17
+    }
+  },
+  "errors": []
+}

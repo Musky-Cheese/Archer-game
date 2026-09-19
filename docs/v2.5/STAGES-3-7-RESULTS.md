@@ -1,5 +1,7 @@
 # V2.5 stages 3–7 review
 
+> Historical report, superseded by `STAGE-8-REVIEW.md`. Stage 8 found that the zombies here were display-only, the camera bow was incomplete, the Blender starter was copied legacy content and the earlier smoke test did not verify gameplay. Do not treat this report as release approval.
+
 This branch is a local art-and-gameplay prototype. It does not change the
 published V2.3.1 page or `index.html`.
 
