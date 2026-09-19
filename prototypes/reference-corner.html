@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Last Archer — Reference Corner</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080d16;color:#d4cec2;font-family:system-ui,sans-serif}canvas{display:block;width:100%;height:100%;touch-action:none}
+header{position:fixed;top:25px;left:28px;pointer-events:none;text-shadow:0 2px 6px #000}header small{font:9px monospace;letter-spacing:4px;color:#b0a99a}h1{font-size:27px;letter-spacing:4px;font-weight:500;margin:5px 0}header p{font:10px monospace;letter-spacing:2px;color:#898e8c;margin:0}
+footer{position:fixed;bottom:22px;left:28px;display:flex;align-items:center;gap:9px;padding:9px;border:1px solid #86908a32;background:#0b1119cc;border-radius:3px}button,select{font:11px system-ui;color:#dad1be;background:#202934;border:1px solid #7d887b50;border-radius:2px;padding:8px 11px;cursor:pointer}button:hover{background:#35404d}#explore{color:#10161e;background:#bc965d;border:0}#status{font:9px monospace;color:#9b9b8d;max-width:250px}#reticle{position:fixed;left:50%;top:50%;width:5px;height:5px;border:1px solid #cdbb91;border-radius:50%;pointer-events:none;opacity:.4}#hint{position:fixed;right:26px;bottom:27px;max-width:220px;text-align:right;font:10px/1.7 monospace;color:#9da4a2;pointer-events:none}
+@media(max-width:600px){header{left:16px;top:18px}h1{font-size:20px}footer{left:12px;bottom:12px;gap:5px;max-width:95%;flex-wrap:wrap}#hint{display:none}#status{font-size:8px}button,select{padding:7px}}
+</style></head><body><canvas id="corner"></canvas><header><small>LAST ARCHER / VISUAL STUDY 01</small><h1>THE LAST CORNER</h1><p>NIGHT • NAKAMACHI DISTRICT</p></header>
+<footer><button id="explore">Explore</button><select id="view" aria-label="Camera view"><option value="hero">Street corner</option><option value="shop">Shuttered shop</option><option value="street">Down the street</option></select><button id="weapon">Bow: on</button><span id="status">Building the corner…</span></footer>
+<span id="reticle"></span><div id="hint">A SMALL WORLD, AFTER EVERYONE LEFT.<br>Drag to look · WASD to move · Hold F to draw</div>
+<!-- ENGINE -->
+<!-- ASSETS -->
+<!-- RUNTIME -->
+</body></html>

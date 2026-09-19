@@ -1,4 +1,17 @@
-# V2.5 handoff — Stage 8
+# V2.5 handoff — reference corner review
+
+**Current checkpoint:** The user rejected the Stage 8 appearance. Open
+`prototypes/v2.5-reference-corner.html` and read `REFERENCE-CORNER-REVIEW.md`.
+This new bounded art study has a denser street, warm local lighting, a new
+shambler and revised foreground arms. It still looks simpler than the concept.
+Collect visual feedback on this sample before expanding the look. It is an
+explorable art study with a draw pose, not a wave/combat implementation.
+
+Eleven portable modules, a manifest and individual renders are in
+`assets/reference-corner/`. Production and the previous prototype are preserved.
+Do not merge, push to main or deploy without preview approval.
+
+## Previous Stage 8 checkpoint
 
 The local review and corrective polish are complete. Read `STAGE-8-REVIEW.md`
 and open `prototypes/v2.5-anime-city-block.html` from the repository root.

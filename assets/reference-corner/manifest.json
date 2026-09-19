@@ -1,0 +1,220 @@
+[
+  {
+    "file": "la-corner-shambler.glb",
+    "dimensions_m": [
+      0.83,
+      1.87,
+      0.446
+    ],
+    "bounds_min": [
+      -0.415,
+      0,
+      -0.223
+    ],
+    "bounds_max": [
+      0.415,
+      1.87,
+      0.223
+    ],
+    "triangles": 1012,
+    "bytes": 189112,
+    "materials": [
+      "VertexPalette"
+    ],
+    "textures": [],
+    "animations": [
+      "Idle",
+      "Walk"
+    ]
+  },
+  {
+    "file": "la-mart-shell.glb",
+    "description": "mart shell",
+    "dimensions_m": [
+      7.645,
+      13,
+      7.41
+    ],
+    "triangles": 516,
+    "bytes": 118276,
+    "materials": 5,
+    "textures": 4,
+    "origin": "base centre; Y up; metres",
+    "sourceOffset": [
+      0.002500000000000613,
+      0,
+      -3.365
+    ]
+  },
+  {
+    "file": "la-window.glb",
+    "description": "window",
+    "dimensions_m": [
+      1.68,
+      2.055,
+      0.32
+    ],
+    "triangles": 60,
+    "bytes": 7392,
+    "materials": 1,
+    "textures": 0,
+    "origin": "base centre; Y up; metres",
+    "sourceOffset": [
+      0,
+      -1.055,
+      0.07999999999999999
+    ]
+  },
+  {
+    "file": "la-balcony.glb",
+    "description": "balcony",
+    "dimensions_m": [
+      2.693,
+      1.095,
+      0.935
+    ],
+    "triangles": 324,
+    "bytes": 35912,
+    "materials": 1,
+    "textures": 0,
+    "origin": "base centre; Y up; metres",
+    "sourceOffset": [
+      0,
+      -0.065,
+      0.4175
+    ]
+  },
+  {
+    "file": "la-aircon.glb",
+    "description": "aircon",
+    "dimensions_m": [
+      0.8,
+      0.775,
+      0.395
+    ],
+    "triangles": 108,
+    "bytes": 12536,
+    "materials": 1,
+    "textures": 0,
+    "origin": "base centre; Y up; metres",
+    "sourceOffset": [
+      0,
+      -0.5000000000000003,
+      0.017500000000000016
+    ]
+  },
+  {
+    "file": "la-dumpster.glb",
+    "description": "dumpster",
+    "dimensions_m": [
+      1.93,
+      1.33,
+      1.134
+    ],
+    "triangles": 218,
+    "bytes": 35144,
+    "materials": 2,
+    "textures": 1,
+    "origin": "base centre; Y up; metres",
+    "sourceOffset": [
+      0,
+      0.059999999999999984,
+      0
+    ]
+  },
+  {
+    "file": "la-refuse-bags.glb",
+    "description": "refuse bags",
+    "dimensions_m": [
+      1.174,
+      0.67,
+      0.477
+    ],
+    "triangles": 132,
+    "bytes": 15188,
+    "materials": 1,
+    "textures": 0,
+    "origin": "base centre; Y up; metres",
+    "sourceOffset": [
+      -0.025217498288999274,
+      -0.05050303211635257,
+      0.17158176608450754
+    ]
+  },
+  {
+    "file": "la-vending.glb",
+    "description": "vending",
+    "dimensions_m": [
+      1.06,
+      2.22,
+      0.907
+    ],
+    "triangles": 460,
+    "bytes": 65204,
+    "materials": 4,
+    "textures": 2,
+    "origin": "base centre; Y up; metres",
+    "sourceOffset": [
+      0,
+      0,
+      0.07350000000000009
+    ]
+  },
+  {
+    "file": "la-abandoned-sedan.glb",
+    "description": "abandoned sedan",
+    "dimensions_m": [
+      2.04,
+      1.419,
+      3.88
+    ],
+    "triangles": 550,
+    "bytes": 67600,
+    "materials": 2,
+    "textures": 1,
+    "origin": "base centre; Y up; metres",
+    "sourceOffset": [
+      -3.3306690738754696e-16,
+      0.025661902427673355,
+      0.08999998807907139
+    ]
+  },
+  {
+    "file": "la-street-lamp.glb",
+    "description": "street lamp",
+    "dimensions_m": [
+      1.395,
+      5.65,
+      0.34
+    ],
+    "triangles": 96,
+    "bytes": 11872,
+    "materials": 2,
+    "textures": 0,
+    "origin": "base centre; Y up; metres",
+    "sourceOffset": [
+      0.567548095881939,
+      0,
+      0
+    ]
+  },
+  {
+    "file": "la-billboard.glb",
+    "description": "billboard",
+    "dimensions_m": [
+      5.2,
+      4.828,
+      1.032
+    ],
+    "triangles": 182,
+    "bytes": 40152,
+    "materials": 3,
+    "textures": 1,
+    "origin": "base centre; Y up; metres",
+    "sourceOffset": [
+      0,
+      5.6,
+      0.3250000000000002
+    ]
+  }
+]
