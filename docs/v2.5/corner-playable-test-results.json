@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "checks": [
+    "asset load",
+    "movement",
+    "near medium far arrows",
+    "pickups",
+    "enemy damage",
+    "restart",
+    "touch cancel",
+    "stable draw resources",
+    "phone layout"
+  ],
+  "metrics": {
+    "ready": true,
+    "assets": {
+      "requested": 14,
+      "loaded": 14,
+      "failed": 0,
+      "placements": 34
+    },
+    "solids": 23,
+    "state": "play",
+    "player": {
+      "x": 0.2,
+      "z": 13.6
+    },
+    "health": 3,
+    "wave": 1,
+    "score": 0,
+    "enemies": 0,
+    "arrows": 0,
+    "buffs": [],
+    "render": {
+      "calls": 291,
+      "triangles": 10494
+    },
+    "memory": {
+      "geometries": 47,
+      "textures": 19
+    },
+    "weapon": {
+      "foreground": true,
+      "draw": false,
+      "release": 0
+    },
+    "charge": 0
+  },
+  "resources": {
+    "before": {
+      "geometries": 47,
+      "textures": 19
+    },
+    "after": {
+      "geometries": 47,
+      "textures": 19
+    }
+  },
+  "errors": []
+}

@@ -11,6 +11,16 @@ Eleven portable modules, a manifest and individual renders are in
 `assets/reference-corner/`. Production and the previous prototype are preserved.
 Do not merge, push to main or deploy without preview approval.
 
+## Playable corner checkpoint
+
+`prototypes/v2.5-corner-playable.html` now brings the approved corner into the
+working V2.5 gameplay loop. Read `CORNER-PLAYABLE-REVIEW.md` and review the
+`corner-playable-*.png` captures. This integration preserves the source art
+study and previous gameplay preview. It has not been deployed or pushed.
+
+Next recommended task after visual review: refine the foreground bow/hands and
+add a purpose-built shambler death animation, then test on an actual phone.
+
 ## Previous Stage 8 checkpoint
 
 The local review and corrective polish are complete. Read `STAGE-8-REVIEW.md`
