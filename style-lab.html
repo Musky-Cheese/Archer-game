@@ -1,0 +1,844 @@
+<title>Horde Style Lab</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<style>
+  :root{
+    --ground:#151a20;
+    --panel:#1d232b;
+    --panel-2:#232b34;
+    --stage:#11151a;
+    --line:#2f3945;
+    --line-soft:#252e38;
+    --ink:#f2ede4;
+    --ink-2:#c3ccd4;
+    --ink-dim:#8b959f;
+    --ember:#e0a458;
+    --ember-dim:#a9793d;
+    --toxic:#7cb342;
+    --danger:#d1495b;
+    --shell:#6f8fb8;
+  }
+
+  html,body{ background:var(--ground); }
+  body{
+    margin:0;
+    padding-block:0 64px;
+    padding-left:20px; padding-right:20px;
+    background:var(--ground);
+    color:var(--ink-2);
+    font-family:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    font-size:15px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{ max-width:1180px; margin:0 auto; }
+
+  /* ---------- header ---------- */
+  .masthead{ padding-block:44px 28px; border-bottom:1px solid var(--line); }
+  .eyebrow{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:11px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--ember-dim); margin:0 0 14px;
+  }
+  h1{
+    font-family:"Big Shoulders Display", "Arial Narrow", sans-serif;
+    font-weight:900; font-size:clamp(2.6rem,9vw,4.2rem); line-height:.92;
+    letter-spacing:.005em; text-transform:uppercase; text-wrap:balance;
+    color:var(--ink); margin:0 0 18px;
+  }
+  .standfirst{ max-width:62ch; margin:0; color:var(--ink-2); font-size:1.02rem; }
+  .standfirst strong{ color:var(--ink); font-weight:600; }
+
+  /* ---------- controls ---------- */
+  .controls{
+    display:flex; flex-wrap:wrap; gap:10px 26px; align-items:center;
+    padding-block:20px; border-bottom:1px solid var(--line); margin-bottom:34px;
+  }
+  .ctl{ display:flex; align-items:center; gap:10px; }
+  .ctl-label{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:10.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-dim);
+  }
+  .seg{ display:flex; border:1px solid var(--line); border-radius:3px; overflow:hidden; }
+  button{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:11.5px; letter-spacing:.09em; text-transform:uppercase;
+    background:transparent; color:var(--ink-dim); border:0;
+    padding:7px 13px; cursor:pointer; transition:background .14s, color .14s;
+  }
+  .seg button + button{ border-left:1px solid var(--line); }
+  button:hover{ color:var(--ink); background:var(--panel-2); }
+  button[aria-pressed="true"]{ background:var(--ember); color:#1b1206; font-weight:500; }
+  button:focus-visible{ outline:2px solid var(--ember); outline-offset:2px; }
+  .btn-solo{ border:1px solid var(--line); border-radius:3px; min-width:92px; }
+
+  /* ---------- grid ---------- */
+  .grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(330px,1fr)); gap:26px; }
+
+  .card{ display:flex; flex-direction:column; }
+  .card-head{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin-bottom:12px; }
+  .tag{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+    padding:3px 7px; border-radius:2px; white-space:nowrap;
+  }
+  .tag-2d{ background:rgba(124,179,66,.14); color:var(--toxic); border:1px solid rgba(124,179,66,.3); }
+  .tag-3d{ background:rgba(111,143,184,.14); color:var(--shell); border:1px solid rgba(111,143,184,.3); }
+  .tag-now{ background:transparent; color:var(--ink-dim); border:1px solid var(--line); }
+  h2{
+    font-family:"Big Shoulders Display", "Arial Narrow", sans-serif;
+    font-weight:700; font-size:1.72rem; line-height:1; text-transform:uppercase;
+    letter-spacing:.01em; color:var(--ink); margin:0;
+  }
+  .card-sub{ margin:0 0 14px; font-size:.86rem; color:var(--ink-dim); }
+
+  .stage{
+    position:relative; aspect-ratio:3/2; max-width:100%;
+    background:var(--stage); border:1px solid var(--line-soft); border-radius:3px;
+    overflow:hidden;
+  }
+  .stage canvas{ display:block; width:100%; height:100%; }
+  .stage-note{
+    position:absolute; left:10px; bottom:8px;
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:9.5px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--ink-dim); opacity:.75; pointer-events:none;
+  }
+
+  .specs{ margin:16px 0 0; display:grid; grid-template-columns:auto 1fr; gap:0; }
+  .specs > div{ display:contents; }
+  .specs dt{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:10px; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-dim);
+    padding:7px 16px 7px 0; border-top:1px solid var(--line-soft); white-space:nowrap;
+  }
+  .specs dd{
+    margin:0; padding:7px 0; border-top:1px solid var(--line-soft);
+    font-size:.86rem; color:var(--ink-2); font-variant-numeric:tabular-nums;
+  }
+  .specs dd em{ font-style:normal; color:var(--ember); }
+  .card-note{
+    margin:14px 0 0; font-size:.86rem; color:var(--ink-dim);
+    border-left:2px solid var(--line); padding-left:12px;
+  }
+
+  /* ---------- closing ---------- */
+  .verdict{ margin-top:56px; padding-top:34px; border-top:1px solid var(--line); }
+  h3{
+    font-family:"Big Shoulders Display", "Arial Narrow", sans-serif;
+    font-weight:700; font-size:2rem; text-transform:uppercase; line-height:1;
+    color:var(--ink); margin:0 0 20px;
+  }
+  .reads{ display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:26px; margin-bottom:30px; }
+  .read h4{
+    font-family:"IBM Plex Mono", ui-monospace, monospace;
+    font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ember); margin:0 0 8px; font-weight:500;
+  }
+  .read p{ margin:0; font-size:.9rem; }
+  .kicker{
+    max-width:70ch; font-size:.98rem; color:var(--ink-2);
+    background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--ember);
+    border-radius:3px; padding:18px 20px; margin:0;
+  }
+  .kicker strong{ color:var(--ink); font-weight:600; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; }
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Last Archer &middot; Art direction</p>
+    <h1>Horde Style Lab</h1>
+    <p class="standfirst">Four directions for the same zombie, each drawn with the <strong>exact tech the game already runs on</strong> — so whatever you pick here drops into the build rather than becoming a reference image nobody can hit. Leave it on <strong>game distance</strong> first: that is the size a zombie actually is when you are deciding whether to loose an arrow, and it is where half of the detail in these designs disappears.</p>
+  </header>
+
+  <div class="controls">
+    <div class="ctl">
+      <span class="ctl-label">Motion</span>
+      <button id="btn-play" class="btn-solo" aria-pressed="true">Pause</button>
+    </div>
+    <div class="ctl">
+      <span class="ctl-label">Gait</span>
+      <div class="seg" role="group" aria-label="Gait">
+        <button id="gait-shamble" aria-pressed="true">Shambler</button>
+        <button id="gait-sprint" aria-pressed="false">Runner</button>
+      </div>
+    </div>
+    <div class="ctl">
+      <span class="ctl-label">Viewed at</span>
+      <div class="seg" role="group" aria-label="Viewing distance">
+        <button id="zoom-far" aria-pressed="true">Game distance</button>
+        <button id="zoom-near" aria-pressed="false">Close up</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+
+    <article class="card">
+      <div class="card-head">
+        <span class="tag tag-2d">2D sprite</span>
+        <span class="tag tag-now">In the build</span>
+      </div>
+      <h2>Inked Stick</h2>
+      <p class="card-sub">What version 8 ships today — the baseline you are judging against.</p>
+      <div class="stage"><canvas id="cv-stick"></canvas><span class="stage-note">2 frames per cycle</span></div>
+      <dl class="specs">
+        <div><dt>Built from</dt><dd>Canvas 2D, baked to a texture</dd></div>
+        <div><dt>Animation</dt><dd>2 frames per walk cycle</dd></div>
+        <div><dt>Texture</dt><dd>128 &times; 200 px</dd></div>
+        <div><dt>In world</dt><dd>Billboard — always faces you</dd></div>
+        <div><dt>Lighting</dt><dd>None, shading is painted in</dd></div>
+        <div><dt>Cost</dt><dd>1 draw call per zombie</dd></div>
+        <div><dt>Effort</dt><dd><em>Already shipped</em></dd></div>
+      </dl>
+      <p class="card-note">Reads cleanly at distance because it is nearly pure silhouette. The two-frame flip is the weak point — it pops rather than walks.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="tag tag-2d">2D sprite</span>
+      </div>
+      <h2>Cel Horde</h2>
+      <p class="card-sub">Anime treatment, same pipeline: ink line, flat fills, one hard shadow.</p>
+      <div class="stage"><canvas id="cv-cel"></canvas><span class="stage-note">6 frames per cycle</span></div>
+      <dl class="specs">
+        <div><dt>Built from</dt><dd>Canvas 2D, baked — same pipeline</dd></div>
+        <div><dt>Animation</dt><dd>6 frames per walk cycle</dd></div>
+        <div><dt>Texture</dt><dd>256 &times; 400 px (4&times; the pixels)</dd></div>
+        <div><dt>In world</dt><dd>Billboard — always faces you</dd></div>
+        <div><dt>Lighting</dt><dd>None, cel shadow is painted in</dd></div>
+        <div><dt>Cost</dt><dd>1 draw call per zombie</dd></div>
+        <div><dt>Effort</dt><dd><em>About one session</em></dd></div>
+      </dl>
+      <p class="card-note">Biggest visual jump for the least work, and nothing else in the game has to change — collision, spawning and the billboard system all stay exactly as they are.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="tag tag-3d">3D mesh</span>
+      </div>
+      <h2>Low-Poly</h2>
+      <p class="card-sub">A real rigged body. Faceted, lit by the scene, turns as it walks.</p>
+      <div class="stage"><canvas id="cv-poly"></canvas><span class="stage-note">Rotating — a billboard cannot do this</span></div>
+      <dl class="specs">
+        <div><dt>Built from</dt><dd>Box, cylinder and icosahedron primitives</dd></div>
+        <div><dt>Animation</dt><dd>Rigged joints, procedural cycle</dd></div>
+        <div><dt>Geometry</dt><dd>17 meshes, ~390 triangles</dd></div>
+        <div><dt>In world</dt><dd>Real mesh — turns as it walks</dd></div>
+        <div><dt>Lighting</dt><dd>Scene lights, flat-shaded facets</dd></div>
+        <div><dt>Cost</dt><dd>17 draw calls per zombie</dd></div>
+        <div><dt>Effort</dt><dd><em>Built — this is the one we shipped</em></dd></div>
+      </dl>
+      <p class="card-note">Kills the cardboard-cutout tell: right now a zombie walking past you still faces you. Also unlocks limb-specific hits — headshots became possible, and pay double.</p>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <span class="tag tag-3d">3D mesh</span>
+      </div>
+      <h2>Toon Shell</h2>
+      <p class="card-sub">The same rig, cel-shaded: banded light and an inked outline.</p>
+      <div class="stage"><canvas id="cv-toon"></canvas><span class="stage-note">Banded light + inverted-hull outline</span></div>
+      <dl class="specs">
+        <div><dt>Built from</dt><dd>Same rig, toon material</dd></div>
+        <div><dt>Animation</dt><dd>Rigged joints, procedural cycle</dd></div>
+        <div><dt>Geometry</dt><dd>17 meshes &times; 2 (outline shell)</dd></div>
+        <div><dt>In world</dt><dd>Real mesh — turns as it walks</dd></div>
+        <div><dt>Lighting</dt><dd>Stepped toon ramp, hard bands</dd></div>
+        <div><dt>Cost</dt><dd>34 draw calls per zombie</dd></div>
+        <div><dt>Effort</dt><dd><em>Three to four sessions, plus the world</em></dd></div>
+      </dl>
+      <p class="card-note">The highest ceiling and the biggest commitment. Cel-shaded characters in a realistically lit arena look pasted on — going here means the ground, crates and sky follow.</p>
+    </article>
+
+  </div>
+
+  <section class="verdict">
+    <h3>Where I would put the money</h3>
+    <div class="reads">
+      <div class="read">
+        <h4>The cheap win</h4>
+        <p>Cel Horde. One session, zero systems touched, and it fixes the two things that actually look bad right now — the flat colour and the two-frame flip. If you dislike it, we roll back by swapping one function.</p>
+      </div>
+      <div class="read">
+        <h4>The real upgrade</h4>
+        <p>Low-Poly. This is the one that changes how the game <em>plays</em>, not just how it looks: zombies gain a facing direction, so flanking means something and hit location becomes readable.</p>
+      </div>
+      <div class="read">
+        <h4>The whole-scene call</h4>
+        <p>Toon Shell. Gorgeous, and it drags the entire art direction with it. Worth doing — but as a deliberate reskin of the game, not as a zombie change.</p>
+      </div>
+    </div>
+    <p class="kicker"><strong>The thing worth deciding first:</strong> whether zombies should have a facing direction. That is a gameplay question hiding inside an art question — and it is the only one of these choices you cannot cheaply undo later. Everything about how they <em>look</em> can be re-skinned in an afternoon once that is settled.</p>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  var reduced = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var playing = !reduced;
+  var gaitName = 'shamble';
+  var zoomName = 'far';
+
+  // Gait parameters drive both the 2D poses and the 3D rigs, so the two
+  // techniques are genuinely showing the same movement.
+  var GAITS = {
+    shamble: {
+      cycle:4.4, legSwing:0.36, knee:0.55, armBase:-1.02, armSwing:0.15,
+      elbow:0.72, lean:0.26, bob:0.030, loll:0.17, spin:0.45
+    },
+    sprint: {
+      cycle:10.4, legSwing:0.82, knee:1.15, armBase:-0.72, armSwing:0.46,
+      elbow:1.02, lean:0.44, bob:0.062, loll:0.06, spin:0.75
+    }
+  };
+  // Matched framing: the figure occupies the same fraction of frame in 2D and 3D.
+  var FILL = { far:0.32, near:0.85 };
+  var CHAR_H = 1.9;
+  function camDist(fill){ return CHAR_H / (0.7678 * fill); }
+
+  var phase = 0, spin = 0;
+
+  /* ================= 2D: shared helpers ================= */
+
+  function setupCanvas(cv){
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var r = cv.getBoundingClientRect();
+    var w = Math.max(80, Math.round(r.width)), h = Math.max(60, Math.round(r.height));
+    if(cv.width !== Math.round(w*dpr) || cv.height !== Math.round(h*dpr)){
+      cv.width = Math.round(w*dpr); cv.height = Math.round(h*dpr);
+    }
+    var g = cv.getContext('2d');
+    g.setTransform(dpr,0,0,dpr,0,0);
+    return {g:g, w:w, h:h};
+  }
+
+  // Quantising a continuous pose to N steps is exactly how the frames get baked,
+  // so the choppiness you see here is the choppiness you would ship.
+  function quantize(p, frames){
+    var t = p/(Math.PI*2);
+    t = t - Math.floor(t);
+    return (Math.floor(t*frames)/frames)*Math.PI*2;
+  }
+
+  function qCurve(g, a, c, b){
+    g.beginPath(); g.moveTo(a[0],a[1]); g.quadraticCurveTo(c[0],c[1],b[0],b[1]); g.stroke();
+  }
+
+  /* ================= 2D style A: the current inked stick ================= */
+
+  var STICK = { skin:'#8fae6a', cloth:'#5b4636', wound:'#8a2e2e', ink:'rgba(8,12,8,.55)' };
+
+  function drawStick(g, w, h, p, gait, fill){
+    var gy = h*0.90, u = h*fill;
+    var cx = w*0.5;
+    var s = Math.sin(p);
+    var lean = gait.lean*u*0.10;
+
+    var hipY  = gy - u*0.45;
+    var chestX = cx + lean*0.5, chestY = gy - u*0.70;
+    var headPX = cx + lean, headPY = gy - u*0.83;
+
+    var footA = [cx - u*0.13 + s*u*0.11, gy];
+    var footB = [cx + u*0.13 - s*u*0.11, gy];
+    var kneeA = [cx + (footA[0]-cx)*0.5 + (footA[0]>cx?1:-1)*u*gait.knee*0.11, hipY + (gy-hipY)*0.55];
+    var kneeB = [cx + (footB[0]-cx)*0.5 + (footB[0]>cx?1:-1)*u*gait.knee*0.11, hipY + (gy-hipY)*0.55];
+
+    var handA = [chestX - u*0.17 - s*u*0.03, chestY + u*0.27];
+    var handB = [chestX + u*0.17 + s*u*0.03, chestY + u*0.24];
+    var elbowA = [chestX + (handA[0]-chestX)*0.5 - u*0.09, chestY + (handA[1]-chestY)*0.4];
+    var elbowB = [chestX + (handB[0]-chestX)*0.5 + u*0.09, chestY + (handB[1]-chestY)*0.4];
+
+    g.lineCap='round'; g.lineJoin='round';
+    function pass(col, lw){
+      g.strokeStyle=col; g.lineWidth=lw;
+      qCurve(g,[cx,hipY],[chestX,chestY],[headPX,headPY]);
+      qCurve(g,[cx,hipY],kneeA,footA);
+      qCurve(g,[cx,hipY],kneeB,footB);
+      qCurve(g,[chestX,chestY],elbowA,handA);
+      qCurve(g,[chestX,chestY],elbowB,handB);
+    }
+    pass(STICK.ink, u*0.075);
+    pass(STICK.skin, u*0.042);
+
+    // torn shirt
+    g.fillStyle = STICK.cloth;
+    g.beginPath();
+    g.moveTo(chestX-u*0.075, chestY-u*0.038);
+    g.lineTo(chestX+u*0.068, chestY-u*0.049);
+    g.lineTo(chestX+u*0.090, hipY-u*0.019);
+    g.lineTo(chestX+u*0.023, hipY+u*0.034);
+    g.lineTo(chestX-u*0.015, hipY-u*0.023);
+    g.lineTo(chestX-u*0.075, hipY+u*0.023);
+    g.closePath(); g.fill();
+
+    // head
+    var hx = headPX, hy = headPY - u*0.068;
+    g.fillStyle = STICK.ink;
+    g.beginPath(); g.ellipse(hx,hy,u*0.085,u*0.094,0,0,Math.PI*2); g.fill();
+    g.fillStyle = STICK.skin;
+    g.beginPath(); g.ellipse(hx,hy,u*0.071,u*0.085,0,0,Math.PI*2); g.fill();
+    g.fillStyle = '#1c130e';
+    g.beginPath();
+    g.moveTo(hx-u*0.030,hy+u*0.041); g.lineTo(hx+u*0.030,hy+u*0.041);
+    g.lineTo(hx+u*0.017,hy+u*0.070); g.lineTo(hx-u*0.017,hy+u*0.070);
+    g.closePath(); g.fill();
+    g.fillStyle = 'rgba(6,8,6,.7)';
+    g.beginPath(); g.arc(hx-u*0.028,hy-u*0.008,u*0.022,0,Math.PI*2); g.fill();
+    g.beginPath(); g.arc(hx+u*0.028,hy-u*0.008,u*0.022,0,Math.PI*2); g.fill();
+    g.fillStyle = STICK.wound;
+    g.beginPath(); g.arc(hx-u*0.028,hy-u*0.008,u*0.009,0,Math.PI*2); g.fill();
+    g.beginPath(); g.arc(hx+u*0.028,hy-u*0.008,u*0.009,0,Math.PI*2); g.fill();
+  }
+
+  /* ================= 2D style B: anime cel ================= */
+
+  var CEL = {
+    ink:'#12171c',
+    skin:'#bcd6a4', skinSh:'#8fae83',
+    hair:'#2b3640', hairHi:'#44566a',
+    cloth:'#86505a', clothSh:'#5d363e',
+    trouser:'#3b4551', trouserSh:'#2a323b',
+    eye:'#e0a458'
+  };
+
+  function drawCel(g, w, h, p, gait, fill){
+    var gy = h*0.92, u = h*fill;
+    var cx = w*0.5;
+    var s = Math.sin(p), s2 = Math.sin(p*2);
+
+    // anime proportions: head is roughly a fifth of total height
+    var headR   = u*0.105;
+    var headCY  = gy - u + headR*1.02;
+    var neckY   = headCY + headR*0.88;
+    var chestY  = neckY + u*0.055;
+    var hipY    = gy - u*0.42;
+    var lean    = gait.lean*u*0.09;
+    var bodyBob = Math.abs(s2)*u*gait.bob*0.9;
+
+    var cxB = cx + lean*0.4;
+    var headCX = cx + lean;
+
+    gy -= 0; headCY -= bodyBob; neckY -= bodyBob; chestY -= bodyBob; hipY -= bodyBob*0.6;
+
+    var inkW = u*0.020;
+
+    function celLimb(a, c, b, wid){
+      g.lineCap='round'; g.lineJoin='round';
+      g.strokeStyle=CEL.ink; g.lineWidth=wid+inkW; qCurve(g,a,c,b);
+      g.strokeStyle=CEL.skin; g.lineWidth=wid; qCurve(g,a,c,b);
+      // one hard shadow, light coming from the left
+      g.strokeStyle=CEL.skinSh; g.lineWidth=wid*0.40;
+      qCurve(g,[a[0]+wid*0.30,a[1]],[c[0]+wid*0.30,c[1]],[b[0]+wid*0.30,b[1]]);
+    }
+    function celTrouser(a, c, b, wid){
+      g.strokeStyle=CEL.ink; g.lineWidth=wid+inkW; qCurve(g,a,c,b);
+      g.strokeStyle=CEL.trouser; g.lineWidth=wid; qCurve(g,a,c,b);
+      g.strokeStyle=CEL.trouserSh; g.lineWidth=wid*0.40;
+      qCurve(g,[a[0]+wid*0.30,a[1]],[c[0]+wid*0.30,c[1]],[b[0]+wid*0.30,b[1]]);
+    }
+
+    // --- legs (trousered to the shin, bare below) ---
+    var footA = [cx - u*0.10 + s*u*0.13, gy - Math.max(0,s)*u*0.02];
+    var footB = [cx + u*0.10 - s*u*0.13, gy - Math.max(0,-s)*u*0.02];
+    var kneeA = [cx + (footA[0]-cx)*0.55 + (footA[0]>cx?1:-1)*u*gait.knee*0.10, hipY + (gy-hipY)*0.52];
+    var kneeB = [cx + (footB[0]-cx)*0.55 + (footB[0]>cx?1:-1)*u*gait.knee*0.10, hipY + (gy-hipY)*0.52];
+    celTrouser([cx-u*0.035,hipY], [kneeA[0],kneeA[1]-u*0.02], kneeA, u*0.058);
+    celTrouser([cx+u*0.035,hipY], [kneeB[0],kneeB[1]-u*0.02], kneeB, u*0.058);
+    celLimb(kneeA, [(kneeA[0]+footA[0])/2, (kneeA[1]+footA[1])/2], footA, u*0.044);
+    celLimb(kneeB, [(kneeB[0]+footB[0])/2, (kneeB[1]+footB[1])/2], footB, u*0.044);
+
+    // --- torso: torn blazer ---
+    var shoulderY = chestY - u*0.012;
+    g.strokeStyle=CEL.ink; g.lineWidth=inkW; g.lineJoin='round';
+    g.beginPath();
+    g.moveTo(cxB-u*0.098, shoulderY);
+    g.lineTo(cxB+u*0.098, shoulderY);
+    g.lineTo(cxB+u*0.082, hipY+u*0.012);
+    g.lineTo(cxB+u*0.036, hipY-u*0.020);
+    g.lineTo(cxB-u*0.006, hipY+u*0.030);
+    g.lineTo(cxB-u*0.048, hipY-u*0.014);
+    g.lineTo(cxB-u*0.086, hipY+u*0.022);
+    g.closePath();
+    g.fillStyle=CEL.cloth; g.fill(); g.stroke();
+    // hard cel shadow on the right third
+    g.save(); g.clip();
+    g.fillStyle=CEL.clothSh;
+    g.beginPath();
+    g.moveTo(cxB+u*0.022, shoulderY-u*0.02);
+    g.lineTo(cxB+u*0.13, shoulderY-u*0.02);
+    g.lineTo(cxB+u*0.13, hipY+u*0.06);
+    g.lineTo(cxB+u*0.004, hipY+u*0.06);
+    g.closePath(); g.fill();
+    g.restore();
+    // collar
+    g.fillStyle=CEL.clothSh; g.strokeStyle=CEL.ink; g.lineWidth=inkW*0.8;
+    g.beginPath();
+    g.moveTo(cxB-u*0.040, shoulderY); g.lineTo(cxB, shoulderY+u*0.062);
+    g.lineTo(cxB+u*0.040, shoulderY); g.closePath(); g.fill(); g.stroke();
+
+    // --- arms, reaching ---
+    var handA = [cxB - u*0.175 - s*u*0.022, chestY + u*0.225];
+    var handB = [cxB + u*0.175 + s*u*0.022, chestY + u*0.200];
+    var elbowA = [cxB - u*0.145, chestY + u*0.085];
+    var elbowB = [cxB + u*0.145, chestY + u*0.075];
+    celLimb([cxB-u*0.085, shoulderY+u*0.012], [elbowA[0],elbowA[1]-u*0.01], elbowA, u*0.050);
+    celLimb([cxB+u*0.085, shoulderY+u*0.012], [elbowB[0],elbowB[1]-u*0.01], elbowB, u*0.050);
+    celLimb(elbowA, [(elbowA[0]+handA[0])/2 - u*0.02, (elbowA[1]+handA[1])/2], handA, u*0.040);
+    celLimb(elbowB, [(elbowB[0]+handB[0])/2 + u*0.02, (elbowB[1]+handB[1])/2], handB, u*0.040);
+    // clawed fingers
+    g.strokeStyle=CEL.ink; g.lineWidth=u*0.013;
+    [handA, handB].forEach(function(hp){
+      for(var i=-1;i<=1;i++){
+        g.beginPath(); g.moveTo(hp[0],hp[1]);
+        g.lineTo(hp[0]+i*u*0.020, hp[1]+u*0.040); g.stroke();
+      }
+    });
+
+    // --- neck ---
+    celLimb([headCX, neckY-u*0.02], [headCX, neckY+u*0.005], [cxB, shoulderY+u*0.005], u*0.040);
+
+    // --- head ---
+    var tilt = gait.loll*0.5;
+    g.save();
+    g.translate(headCX, headCY); g.rotate(tilt);
+
+    // face shape: rounded skull with a tapered chin
+    g.beginPath();
+    g.moveTo(-headR*0.98, -headR*0.10);
+    g.quadraticCurveTo(-headR*0.98, -headR*1.12, 0, -headR*1.12);
+    g.quadraticCurveTo(headR*0.98, -headR*1.12, headR*0.98, -headR*0.10);
+    g.quadraticCurveTo(headR*0.92, headR*0.72, 0, headR*1.05);
+    g.quadraticCurveTo(-headR*0.92, headR*0.72, -headR*0.98, -headR*0.10);
+    g.closePath();
+    g.fillStyle=CEL.skin; g.fill();
+    g.strokeStyle=CEL.ink; g.lineWidth=inkW; g.stroke();
+    // hard cel shadow down the right of the face
+    g.save(); g.clip();
+    g.fillStyle=CEL.skinSh;
+    g.beginPath();
+    g.moveTo(headR*0.28, -headR*1.4); g.lineTo(headR*1.4, -headR*1.4);
+    g.lineTo(headR*1.4, headR*1.4); g.lineTo(headR*0.10, headR*1.4);
+    g.closePath(); g.fill();
+    g.restore();
+
+    // eyes: one big anime eye, the other lost under the fringe
+    g.fillStyle='#f4f7ef';
+    g.beginPath(); g.ellipse(-headR*0.36, -headR*0.10, headR*0.24, headR*0.30, 0, 0, Math.PI*2); g.fill();
+    g.strokeStyle=CEL.ink; g.lineWidth=inkW*0.9; g.stroke();
+    g.fillStyle=CEL.eye;
+    g.beginPath(); g.ellipse(-headR*0.34, -headR*0.06, headR*0.13, headR*0.17, 0, 0, Math.PI*2); g.fill();
+    g.fillStyle=CEL.ink;
+    g.beginPath(); g.ellipse(-headR*0.34, -headR*0.06, headR*0.055, headR*0.085, 0, 0, Math.PI*2); g.fill();
+    g.fillStyle='#ffffff';
+    g.beginPath(); g.arc(-headR*0.42, -headR*0.17, headR*0.05, 0, Math.PI*2); g.fill();
+    // dead socket
+    g.fillStyle='rgba(12,16,20,.82)';
+    g.beginPath(); g.ellipse(headR*0.40, -headR*0.08, headR*0.20, headR*0.24, 0, 0, Math.PI*2); g.fill();
+    g.fillStyle=CEL.eye;
+    g.beginPath(); g.arc(headR*0.40, -headR*0.06, headR*0.045, 0, Math.PI*2); g.fill();
+
+    // slack jaw
+    g.fillStyle='#24141a';
+    g.beginPath();
+    g.moveTo(-headR*0.26, headR*0.42);
+    g.quadraticCurveTo(0, headR*0.30, headR*0.26, headR*0.42);
+    g.quadraticCurveTo(0, headR*0.96, -headR*0.26, headR*0.42);
+    g.closePath(); g.fill();
+    g.strokeStyle=CEL.ink; g.lineWidth=inkW*0.7; g.stroke();
+    g.fillStyle='#e9e4d6';
+    g.beginPath();
+    g.moveTo(-headR*0.14, headR*0.40); g.lineTo(-headR*0.05, headR*0.40);
+    g.lineTo(-headR*0.095, headR*0.55); g.closePath(); g.fill();
+    g.beginPath();
+    g.moveTo(headR*0.05, headR*0.40); g.lineTo(headR*0.15, headR*0.40);
+    g.lineTo(headR*0.10, headR*0.56); g.closePath(); g.fill();
+
+    // spiked fringe
+    g.fillStyle=CEL.hair; g.strokeStyle=CEL.ink; g.lineWidth=inkW;
+    g.beginPath();
+    g.moveTo(-headR*1.02, -headR*0.16);
+    g.quadraticCurveTo(-headR*1.10, -headR*1.22, -headR*0.10, -headR*1.20);
+    g.quadraticCurveTo(headR*1.06, -headR*1.20, headR*1.02, -headR*0.12);
+    g.lineTo(headR*0.74, -headR*0.52);
+    g.lineTo(headR*0.50, -headR*0.16);
+    g.lineTo(headR*0.24, -headR*0.60);
+    g.lineTo(-headR*0.04, -headR*0.22);
+    g.lineTo(-headR*0.30, -headR*0.66);
+    g.lineTo(-headR*0.56, -headR*0.24);
+    g.lineTo(-headR*0.78, -headR*0.62);
+    g.closePath(); g.fill(); g.stroke();
+    // hair highlight band
+    g.fillStyle=CEL.hairHi;
+    g.beginPath();
+    g.ellipse(-headR*0.34, -headR*0.86, headR*0.40, headR*0.11, -0.28, 0, Math.PI*2);
+    g.fill();
+
+    g.restore();
+
+    // blood streak, drawn last so it sits over the blazer
+    g.strokeStyle='#9c3232'; g.lineWidth=u*0.012; g.lineCap='round';
+    g.beginPath();
+    g.moveTo(headCX+u*0.02, headCY+headR*0.9);
+    g.lineTo(cxB+u*0.045, chestY+u*0.10);
+    g.stroke();
+  }
+
+  /* ================= 3D: shared rig ================= */
+
+  var hasThree = (typeof THREE !== 'undefined');
+
+  function toonRamp(steps){
+    try{
+      var data = new Uint8Array(steps);
+      for(var i=0;i<steps;i++){ data[i] = Math.round((i/(steps-1))*255); }
+      var tex = new THREE.DataTexture(data, steps, 1, THREE.RedFormat);
+      tex.minFilter = THREE.NearestFilter;
+      tex.magFilter = THREE.NearestFilter;
+      tex.generateMipmaps = false;
+      tex.needsUpdate = true;
+      return tex;
+    }catch(e){ return null; }
+  }
+
+  function makeScene(canvas, opts){
+    if(!hasThree) return null;
+    var renderer;
+    try{
+      renderer = new THREE.WebGLRenderer({canvas:canvas, antialias:true, alpha:false});
+    }catch(e){ return null; }
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 2));
+    renderer.setClearColor(0x11151a, 1);
+    try{ renderer.outputEncoding = THREE.sRGBEncoding; }catch(e){}
+
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(42, 1.5, 0.1, 60);
+
+    scene.add(new THREE.AmbientLight(0xffffff, opts.toon ? 0.62 : 0.46));
+    var key = new THREE.DirectionalLight(0xfff0dc, opts.toon ? 1.15 : 1.0);
+    key.position.set(-2.6, 3.4, 2.4);
+    scene.add(key);
+    var rim = new THREE.DirectionalLight(0x6f8fb8, 0.45);
+    rim.position.set(2.4, 1.4, -2.6);
+    scene.add(rim);
+
+    var ramp = opts.toon ? toonRamp(4) : null;
+    function mat(hex){
+      if(opts.toon){
+        var o = {color:hex};
+        if(ramp) o.gradientMap = ramp;
+        return new THREE.MeshToonMaterial(o);
+      }
+      return new THREE.MeshStandardMaterial({color:hex, flatShading:true, roughness:0.88, metalness:0.0});
+    }
+    var outlineMat = opts.toon
+      ? new THREE.MeshBasicMaterial({color:0x0d1116, side:THREE.BackSide})
+      : null;
+
+    function piece(parent, geo, hex, y){
+      var m = new THREE.Mesh(geo, mat(hex));
+      m.position.y = y;
+      parent.add(m);
+      if(outlineMat){
+        var o = new THREE.Mesh(geo, outlineMat);
+        o.scale.setScalar(1.075);
+        m.add(o);
+      }
+      return m;
+    }
+
+    var P = opts.palette;
+
+    var root = new THREE.Group(); scene.add(root);
+    var body = new THREE.Group(); root.add(body);
+
+    // ground shadow so the figure is not floating
+    var shadow = new THREE.Mesh(
+      new THREE.CircleGeometry(0.44, 20),
+      new THREE.MeshBasicMaterial({color:0x000000, transparent:true, opacity:0.32})
+    );
+    shadow.rotation.x = -Math.PI/2;
+    shadow.position.y = 0.005;
+    root.add(shadow);
+
+    var hips = new THREE.Group(); hips.position.y = 0.92; body.add(hips);
+    var torso = new THREE.Group(); hips.add(torso);
+    piece(torso, new THREE.BoxGeometry(0.40, 0.58, 0.25), P.cloth, 0.29);
+    piece(torso, new THREE.BoxGeometry(0.34, 0.16, 0.24), P.cloth2, 0.02);
+
+    var neck = new THREE.Group(); neck.position.y = 0.60; torso.add(neck);
+    piece(neck, new THREE.CylinderGeometry(0.055,0.055,0.10,6), P.skin, 0.05);
+    var head = piece(neck, new THREE.IcosahedronGeometry(0.175, opts.toon?1:0), P.skin, 0.24);
+    // jaw
+    piece(neck, new THREE.BoxGeometry(0.15,0.075,0.14), P.jaw, 0.145);
+    // eyes
+    var eyeGeo = new THREE.SphereGeometry(0.030, 7, 6);
+    var eyeMat = new THREE.MeshBasicMaterial({color:P.eye});
+    [-0.068, 0.068].forEach(function(ex){
+      var e = new THREE.Mesh(eyeGeo, eyeMat);
+      e.position.set(ex, 0.26, 0.145);
+      neck.add(e);
+    });
+    if(opts.toon){
+      // a dark hair cap reads as the anime silhouette
+      var hair = piece(neck, new THREE.SphereGeometry(0.188, 10, 7, 0, Math.PI*2, 0, Math.PI*0.55), P.hair, 0.255);
+      hair.rotation.x = -0.20;
+    }
+
+    function limbPair(px, py, upLen, upRad, loLen, loRad, colUp, colLo){
+      var up = new THREE.Group(); up.position.set(px, py, 0); torso.add(up);
+      piece(up, new THREE.CylinderGeometry(upRad, upRad*0.88, upLen, opts.toon?8:6), colUp, -upLen/2);
+      var lo = new THREE.Group(); lo.position.y = -upLen; up.add(lo);
+      piece(lo, new THREE.CylinderGeometry(upRad*0.88, loRad, loLen, opts.toon?8:6), colLo, -loLen/2);
+      return {up:up, lo:lo};
+    }
+
+    var armL = limbPair(-0.235, 0.52, 0.30, 0.058, 0.30, 0.048, P.cloth, P.skin);
+    var armR = limbPair( 0.235, 0.52, 0.30, 0.058, 0.30, 0.048, P.cloth, P.skin);
+
+    function legPair(px){
+      var up = new THREE.Group(); up.position.set(px, 0.02, 0); hips.add(up);
+      piece(up, new THREE.CylinderGeometry(0.082, 0.072, 0.46, opts.toon?8:6), P.trouser, -0.23);
+      var lo = new THREE.Group(); lo.position.y = -0.46; up.add(lo);
+      piece(lo, new THREE.CylinderGeometry(0.072, 0.058, 0.44, opts.toon?8:6), P.trouser, -0.22);
+      piece(lo, new THREE.BoxGeometry(0.11, 0.07, 0.21), P.shoe, -0.46);
+      return {up:up, lo:lo};
+    }
+    var legL = legPair(-0.11), legR = legPair(0.11);
+
+    return {
+      renderer:renderer, scene:scene, camera:camera, canvas:canvas,
+      root:root, body:body, torso:torso, neck:neck,
+      armL:armL, armR:armR, legL:legL, legR:legR
+    };
+  }
+
+  // rotation.x sign convention, for a figure facing +Z:
+  //   limb hanging down  -> negative x swings it forward
+  //   limb pointing up   -> positive x leans it forward
+  function poseRig(r, p, gait, spinAngle, fill){
+    if(!r) return;
+    var s = Math.sin(p), s2 = Math.sin(p*2);
+
+    r.root.rotation.y = spinAngle;
+    r.body.position.y = Math.abs(s2)*gait.bob;
+
+    r.torso.rotation.x = gait.lean;
+    r.torso.rotation.z = Math.sin(p)*0.045;
+    r.neck.rotation.x = gait.lean*0.35;
+    r.neck.rotation.z = gait.loll;
+
+    r.legL.up.rotation.x = -s*gait.legSwing;
+    r.legR.up.rotation.x =  s*gait.legSwing;
+    r.legL.lo.rotation.x = gait.knee*(0.20 + 0.80*Math.max(0, Math.sin(p+1.25)));
+    r.legR.lo.rotation.x = gait.knee*(0.20 + 0.80*Math.max(0, Math.sin(p+1.25+Math.PI)));
+
+    r.armL.up.rotation.x = gait.armBase + s*gait.armSwing;
+    r.armR.up.rotation.x = gait.armBase - s*gait.armSwing;
+    r.armL.up.rotation.z =  0.22;
+    r.armR.up.rotation.z = -0.22;
+    r.armL.lo.rotation.x = -gait.elbow;
+    r.armR.lo.rotation.x = -gait.elbow;
+
+    var d = camDist(fill);
+    r.camera.position.set(0, 1.42, d);
+    r.camera.lookAt(0, 0.95, 0);
+  }
+
+  function sizeRenderer(r){
+    if(!r) return;
+    var rect = r.canvas.getBoundingClientRect();
+    var w = Math.max(80, Math.round(rect.width)), h = Math.max(60, Math.round(rect.height));
+    r.renderer.setSize(w, h, false);
+    r.camera.aspect = w/h;
+    r.camera.updateProjectionMatrix();
+  }
+
+  /* ================= wiring ================= */
+
+  var cvStick = document.getElementById('cv-stick');
+  var cvCel   = document.getElementById('cv-cel');
+
+  var rigPoly = makeScene(document.getElementById('cv-poly'), {
+    toon:false,
+    palette:{ skin:0x8fae6a, cloth:0x4a4033, cloth2:0x3b3329, trouser:0x39414c,
+              shoe:0x24282e, jaw:0x7d9a5c, eye:0xd1495b, hair:0x2b3640 }
+  });
+  var rigToon = makeScene(document.getElementById('cv-toon'), {
+    toon:true,
+    palette:{ skin:0xbcd6a4, cloth:0x86505a, cloth2:0x5d363e, trouser:0x3b4551,
+              shoe:0x22272e, jaw:0xa8c493, eye:0xe0a458, hair:0x2b3640 }
+  });
+
+  function drawAll(){
+    var gait = GAITS[gaitName];
+    var fill = FILL[zoomName];
+
+    var a = setupCanvas(cvStick);
+    a.g.clearRect(0,0,a.w,a.h);
+    drawStick(a.g, a.w, a.h, quantize(phase, 2), gait, fill);
+
+    var b = setupCanvas(cvCel);
+    b.g.clearRect(0,0,b.w,b.h);
+    drawCel(b.g, b.w, b.h, quantize(phase, 6), gait, fill);
+
+    [rigPoly, rigToon].forEach(function(r){
+      if(!r) return;
+      sizeRenderer(r);
+      poseRig(r, phase, gait, spin, fill);
+      r.renderer.render(r.scene, r.camera);
+    });
+  }
+
+  var last = null;
+  function frame(ts){
+    if(last === null) last = ts;
+    var dt = Math.min(0.05, (ts-last)/1000);
+    last = ts;
+    if(playing){
+      phase += dt * GAITS[gaitName].cycle;
+      spin  += dt * GAITS[gaitName].spin * 0.42;
+    }
+    drawAll();
+    requestAnimationFrame(frame);
+  }
+
+  // controls
+  var btnPlay = document.getElementById('btn-play');
+  btnPlay.textContent = playing ? 'Pause' : 'Play';
+  btnPlay.setAttribute('aria-pressed', playing ? 'true' : 'false');
+  btnPlay.addEventListener('click', function(){
+    playing = !playing;
+    btnPlay.textContent = playing ? 'Pause' : 'Play';
+    btnPlay.setAttribute('aria-pressed', playing ? 'true' : 'false');
+  });
+
+  function bindPair(aId, bId, aVal, bVal, set){
+    var a = document.getElementById(aId), b = document.getElementById(bId);
+    function apply(v){
+      set(v);
+      a.setAttribute('aria-pressed', v===aVal ? 'true' : 'false');
+      b.setAttribute('aria-pressed', v===bVal ? 'true' : 'false');
+    }
+    a.addEventListener('click', function(){ apply(aVal); });
+    b.addEventListener('click', function(){ apply(bVal); });
+  }
+  bindPair('gait-shamble','gait-sprint','shamble','sprint', function(v){ gaitName = v; });
+  bindPair('zoom-far','zoom-near','far','near', function(v){ zoomName = v; });
+
+  window.addEventListener('resize', drawAll);
+
+  // Render the first frame immediately so the page is never blank at rest,
+  // including when motion is reduced and the loop starts paused.
+  drawAll();
+  requestAnimationFrame(frame);
+})();
+</script>
