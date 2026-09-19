@@ -2,23 +2,21 @@
 
 ## Current checkpoint
 
-Stage 1 proposal complete. User has not yet approved the concept. Branch: `anime-city-v1`, based on rollback commit `c4429ed`. Live game: V2.3.1. No runtime edits or deployment in Stage 1. Read `STYLE-GUIDE.md` and view `concept-sheet.png` before implementing. `concept-prompt.txt` records the single built-in generation prompt.
+Stages 1 and 2 are complete locally. Branch: `anime-city-v1`, based on rollback commit `c4429ed`. Live game: V2.3.1. Read `STYLE-GUIDE.md`, view `concept-sheet.png`, then review `STAGE-2-RESULTS.md` and the local renderer lab before implementing further work. The production entrypoint remains unchanged. `concept-prompt.txt` records the single built-in generation prompt.
 
-## Next task — only after the user approves the direction and says continue
+## Next task — only after the user approves the renderer direction and says continue
 
-Recommended model: GPT-5.6 Terra, high reasoning. Build Stage 2 only: a local renderer and placement study. Do not build the entire city or new characters yet.
+Recommended model: GPT-5.6 Terra, medium reasoning. Build Stage 3 only: the modular city-block kit and a local 32 × 32 m intersection. Do not build zombies, bow hands or a production map yet.
 
 1. Confirm branch and working tree. Preserve all user changes. Save reproducible baseline camera positions and a deterministic test layout; capture baseline screenshots.
-2. Inspect and fix the bus/fuel-stop Y/Z placement error in the prototype. Update world matrices before extracting collider positions; verify them visually and through bounds. Do not delete the functional platform based on the previous mistaken diagnosis.
-3. Build an isolated preview under a dedicated prototype path. Reuse a few existing GLBs and simple street blocks. Retain the production entrypoint untouched for this checkpoint.
-4. Audit sRGB/data texture handling and procedural/imported colors; test swatches, a gray cube, one GLB and one sponsor face. Do not repeat the washed-out V2.4 global exposure change.
-5. Implement a dark cel-lighting preset and selective outline experiment; keep bloom off. Add quality controls if necessary. No new image generation unless the user asks for a concept revision.
-6. Verify opening/intersection/alley views, no console/shader errors, grounded objects, colliders and texture loading. Record draw calls, triangles, browser/device and frame-time samples. Desktop mobile emulation verifies layout only.
-7. Deliver a local playable preview with same-camera comparisons and explain remaining limitations. Save the next handoff and stop for user review. No push to main, merge or live deployment.
+2. Create five to seven reusable modular city assets: storefront facade, corner facade, alley wall, sidewalk/curb, road/intersection, streetlight and dumpster. Keep each as a separate GLB with a base-centre pivot, existing asset budgets and manifest data.
+3. Build a fixed 32 × 32 m intersection from those modules in a separate local preview. Reuse the approved lighting preset; no production entrypoint edits yet.
+4. Add intended collision shapes after world transforms update and validate every grounded object and sign mount.
+5. Compare the new block against the Stage 2 fixed views; inspect desktop and touch layouts, assets, console errors and geometry/draw-call counts. Do not claim mobile performance without a phone measurement.
+6. Deliver an asset manifest, editable Blender source, local preview screenshots and the next handoff. Stop for user review. No push to main, merge or live deployment.
 
 ## Subsequent stages
 
-3. Terra medium: modular city assets, individual GLBs and manifest.
 4. Terra high: one rigged shambler, then additional types only after it works.
 5. Terra high: correct POV bow, hands, nocking/draw/release and trajectory tests.
 6. Terra medium: assemble the intersection and alley with colliders and ads.
