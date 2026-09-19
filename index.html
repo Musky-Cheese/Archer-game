@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#12151a">
 <meta name="description" content="Last Archer is a fast, funny browser survival game. Hold the line, loose arrows, and outlast the undead.">
-<title>Last Archer V2.3.1 — Blender District</title>
+<title>Last Archer V2.4 — Nightwatch</title>
 <style>
   :root{
     --bg-deep:#12151a;
@@ -4125,9 +4125,9 @@
 
   <div id="start-screen" class="overlay">
     <div class="panel panel-wide">
-      <p class="eyebrow">V2.3.1 · Blender District</p>
+      <p class="eyebrow">V2.4 · NIGHTWATCH</p>
       <h1>LAST ARCHER</h1>
-      <p class="tagline">The dead don't stop walking. Now the district is built from reusable Blender assets.</p>
+      <p class="tagline">The district stays dark. Your view is sharper, and the bow is finally in your hands.</p>
       <div class="controls-hint">
         <span>WASD to move</span><span class="dot">·</span><span>aim with your mouse</span><span class="dot">·</span><span>click or hold FIRE to draw, release to shoot</span>
       </div>
@@ -4297,8 +4297,8 @@
       model.scale.setScalar(def.scale||1);
       model.traverse(function(node){
         if(!node.isMesh) return;
-        node.castShadow=false;
-        node.receiveShadow=false;
+        node.castShadow=true;
+        node.receiveShadow=true;
         var materials=Array.isArray(node.material)?node.material:[node.material];
         materials.forEach(function(material){
           if(!material) return;
@@ -4591,21 +4591,34 @@
   }
 
   // ================= three.js setup =================
-  var renderer, scene, camera;
+  var renderer, scene, camera, viewBow, viewBowArrow, viewBowStringMid;
   function initThree(){
-    renderer = new THREE.WebGLRenderer({canvas:canvas3d, antialias:true});
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+    renderer = new THREE.WebGLRenderer({canvas:canvas3d, antialias:true, powerPreference:'high-performance', precision:'highp'});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2.5));
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = .9;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(0x171b21, 22, 108);
-    camera = new THREE.PerspectiveCamera(74, 1, 0.1, 260);
+    scene.background = new THREE.Color(0x090d13);
+    scene.fog = new THREE.Fog(0x0c1219, 34, 132);
+    camera = new THREE.PerspectiveCamera(68, 1, 0.08, 260);
     camera.rotation.order = 'YXZ';
+    scene.add(camera);
 
-    scene.add(new THREE.AmbientLight(0x8891a0, 0.75));
-    var dl = new THREE.DirectionalLight(0xe0a458, 0.9);
-    dl.position.set(-20,30,10);
+    scene.add(new THREE.HemisphereLight(0x60758c, 0x0b0e12, .72));
+    var dl = new THREE.DirectionalLight(0xffbd72, 1.08);
+    dl.position.set(-24,34,12);
+    dl.castShadow=true;
+    dl.shadow.mapSize.set(1024,1024);
+    dl.shadow.camera.left=-48; dl.shadow.camera.right=48;
+    dl.shadow.camera.top=48; dl.shadow.camera.bottom=-48;
+    dl.shadow.camera.near=1; dl.shadow.camera.far=105;
+    dl.shadow.bias=-0.0008;
     scene.add(dl);
-    var dl2 = new THREE.DirectionalLight(0x4a5568, 0.4);
-    dl2.position.set(20,15,-25);
+    var dl2 = new THREE.DirectionalLight(0x4f79a8, 0.42);
+    dl2.position.set(24,18,-30);
     scene.add(dl2);
 
     buildGround();
@@ -4613,6 +4626,54 @@
     buildPlatformAndRamps();
     buildObstacles();
     buildContainers();
+    scene.traverse(function(node){if(node.isMesh){node.castShadow=true;node.receiveShadow=true;}});
+    initViewBow();
+  }
+
+  function viewCylinder(a,b,r,material){
+    var delta=new THREE.Vector3().subVectors(b,a);
+    var mesh=new THREE.Mesh(new THREE.CylinderGeometry(r,r,delta.length(),6),material);
+    mesh.position.copy(a).add(b).multiplyScalar(.5);
+    mesh.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),delta.clone().normalize());
+    mesh.renderOrder=1000; mesh.material.depthTest=false; mesh.material.depthWrite=false;
+    return mesh;
+  }
+  function initViewBow(){
+    viewBow=new THREE.Group();
+    viewBow.name='FIRST_PERSON_BOW';
+    var wood=new THREE.MeshStandardMaterial({color:0xb96f32,roughness:.58,metalness:.04});
+    var dark=new THREE.MeshStandardMaterial({color:0x171b20,roughness:.78});
+    var wrap=new THREE.MeshStandardMaterial({color:0x4d2f24,roughness:1});
+    var stringMat=new THREE.MeshBasicMaterial({color:0xf3e9d1});
+    var metal=new THREE.MeshStandardMaterial({color:0xf0c06a,roughness:.3,metalness:.72});
+    var pts=[new THREE.Vector3(0,.72,0),new THREE.Vector3(.12,.37,0),new THREE.Vector3(.15,0,0),new THREE.Vector3(.12,-.37,0),new THREE.Vector3(0,-.72,0)];
+    for(var i=0;i<pts.length-1;i++) viewBow.add(viewCylinder(pts[i],pts[i+1],.035,wood));
+    viewBow.add(viewCylinder(new THREE.Vector3(.15,-.13,0),new THREE.Vector3(.15,.13,0),.055,wrap));
+    var top=viewCylinder(pts[0],new THREE.Vector3(-.05,0,0),.008,stringMat);
+    var bottom=viewCylinder(new THREE.Vector3(-.05,0,0),pts[4],.008,stringMat);
+    viewBow.add(top,bottom);
+    viewBowStringMid={top:top,bottom:bottom,pts:pts,stringMat:stringMat};
+    viewBowArrow=new THREE.Group();
+    viewBowArrow.add(viewCylinder(new THREE.Vector3(-.52,0,0),new THREE.Vector3(.42,0,0),.012,dark));
+    var tip=new THREE.Mesh(new THREE.ConeGeometry(.035,.12,5),metal);
+    tip.rotation.z=-Math.PI/2;tip.position.x=.48;tip.renderOrder=1001;tip.material.depthTest=false;tip.material.depthWrite=false;
+    viewBowArrow.add(tip);viewBow.add(viewBowArrow);
+    viewBow.position.set(.72,-.42,-1.22);
+    viewBow.rotation.set(-.08,-.12,.04);
+    camera.add(viewBow);
+  }
+  function updateViewBow(t){
+    if(!viewBow) return;
+    var draw=chargeActive?charge:0;
+    var bob=(state===STATE_PLAY&&!reducedMotion)?Math.sin(t*7)*.008:0;
+    viewBow.position.set(.72+bob,-.42+Math.abs(bob)*.45,-1.22);
+    viewBow.rotation.z=.04+bob*.8;
+    viewBowArrow.position.x=-draw*.34;
+    var middle=new THREE.Vector3(-.05-draw*.34,0,0), data=viewBowStringMid;
+    viewBow.remove(data.top);viewBow.remove(data.bottom);
+    data.top=viewCylinder(data.pts[0],middle,.008,data.stringMat);
+    data.bottom=viewCylinder(middle,data.pts[4],.008,data.stringMat);
+    viewBow.add(data.top,data.bottom);
   }
 
   function makeGroundTexture(){
@@ -5243,6 +5304,7 @@
       sx=(Math.random()-0.5)*m; sz=(Math.random()-0.5)*m; camY += (Math.random()-0.5)*m;
     }
     camera.position.set(player.x+sx, camY, player.z+sz);
+    updateViewBow(t);
     renderer.render(scene,camera);
     drawHud2d(t);
   }
@@ -5260,27 +5322,8 @@
     hctx.moveTo(cx,cy+r-2); hctx.lineTo(cx,cy+r+7);
     hctx.stroke();
 
-    // first-person bow
-    var bx=cx, by=H-40;
-    var pull = chargeActive?charge*30:0;
-    hctx.save();
-    hctx.translate(bx,by);
-    hctx.strokeStyle=COLOR.emberDim; hctx.lineWidth=5;
-    hctx.beginPath(); hctx.arc(60,0,58,-1.0,1.0); hctx.stroke();
-    hctx.strokeStyle='rgba(242,237,228,.6)'; hctx.lineWidth=2;
-    hctx.beginPath();
-    hctx.moveTo(60+Math.cos(-1.0)*58, Math.sin(-1.0)*58);
-    hctx.lineTo(60-pull, 0);
-    hctx.lineTo(60+Math.cos(1.0)*58, Math.sin(1.0)*58);
-    hctx.stroke();
-    if(chargeActive){
-      hctx.strokeStyle=COLOR.ember; hctx.lineWidth=3;
-      hctx.beginPath(); hctx.moveTo(60-pull,0); hctx.lineTo(60-pull-26,0); hctx.stroke();
-    }
-    hctx.restore();
-
     var g=hctx.createRadialGradient(cx,cy,Math.min(W,H)*0.32,cx,cy,Math.max(W,H)*0.72);
-    g.addColorStop(0,'rgba(0,0,0,0)'); g.addColorStop(1,'rgba(0,0,0,.5)');
+    g.addColorStop(0,'rgba(0,0,0,0)'); g.addColorStop(1,'rgba(0,0,0,.28)');
     hctx.fillStyle=g; hctx.fillRect(0,0,W,H);
     if(flashT>0){ hctx.fillStyle='rgba(209,73,91,'+(flashT/0.28*0.35)+')'; hctx.fillRect(0,0,W,H); }
   }
