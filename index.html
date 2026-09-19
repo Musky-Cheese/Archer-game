@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#12151a">
 <meta name="description" content="Last Archer is a fast, funny browser survival game. Hold the line, loose arrows, and outlast the undead.">
-<title>Last Archer V2.4.1 — Nightwatch</title>
+<title>Last Archer V2.4 — Nightwatch</title>
 <style>
   :root{
     --bg-deep:#12151a;
@@ -4125,7 +4125,7 @@
 
   <div id="start-screen" class="overlay">
     <div class="panel panel-wide">
-      <p class="eyebrow">V2.4.1 · NIGHTWATCH</p>
+      <p class="eyebrow">V2.4 · NIGHTWATCH</p>
       <h1>LAST ARCHER</h1>
       <p class="tagline">The district stays dark. Your view is sharper, and the bow is finally in your hands.</p>
       <div class="controls-hint">
@@ -4553,6 +4553,15 @@
   var RAMP_W = {z0:-19,z1:-13, x0:8,x1:17};   // rises as x increases from 8(h0) to 17(h=PH)
 
   function regionAt(x,z){
+    if(x>=PLATFORM.x0&&x<=PLATFORM.x1&&z>=PLATFORM.z0&&z<=PLATFORM.z1) return {region:'platform', h:PLATFORM.h};
+    if(x>=RAMP_S.x0&&x<=RAMP_S.x1&&z>=RAMP_S.z0&&z<=RAMP_S.z1){
+      var t=( -2 - z)/9; t=Math.max(0,Math.min(1,t));
+      return {region:'rampS', h:PLATFORM.h*t};
+    }
+    if(x>=RAMP_W.x0&&x<=RAMP_W.x1&&z>=RAMP_W.z0&&z<=RAMP_W.z1){
+      var t2=(x-8)/9; t2=Math.max(0,Math.min(1,t2));
+      return {region:'rampW', h:PLATFORM.h*t2};
+    }
     return {region:'ground', h:0};
   }
 
@@ -4588,7 +4597,7 @@
     renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2.5));
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = .68;
+    renderer.toneMappingExposure = .9;
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     scene = new THREE.Scene();
@@ -4598,8 +4607,8 @@
     camera.rotation.order = 'YXZ';
     scene.add(camera);
 
-    scene.add(new THREE.HemisphereLight(0x53687d, 0x07090d, .5));
-    var dl = new THREE.DirectionalLight(0xe3a25c, .82);
+    scene.add(new THREE.HemisphereLight(0x60758c, 0x0b0e12, .72));
+    var dl = new THREE.DirectionalLight(0xffbd72, 1.08);
     dl.position.set(-24,34,12);
     dl.castShadow=true;
     dl.shadow.mapSize.set(1024,1024);
@@ -4608,13 +4617,13 @@
     dl.shadow.camera.near=1; dl.shadow.camera.far=105;
     dl.shadow.bias=-0.0008;
     scene.add(dl);
-    var dl2 = new THREE.DirectionalLight(0x3f6289, .26);
+    var dl2 = new THREE.DirectionalLight(0x4f79a8, 0.42);
     dl2.position.set(24,18,-30);
     scene.add(dl2);
 
     buildGround();
     buildBoundary();
-    // Removed the old raised platform/ramp silhouette that read as a floating house.
+    buildPlatformAndRamps();
     buildObstacles();
     buildContainers();
     scene.traverse(function(node){if(node.isMesh){node.castShadow=true;node.receiveShadow=true;}});
@@ -4670,7 +4679,7 @@
   function makeGroundTexture(){
     var c=document.createElement('canvas'); c.width=512; c.height=512;
     var g=c.getContext('2d');
-    g.fillStyle='#14191f'; g.fillRect(0,0,512,512);
+    g.fillStyle='#20252c'; g.fillRect(0,0,512,512);
     var i;
     for(i=0;i<140;i++){
       g.globalAlpha=0.05+Math.random()*0.08;
@@ -5024,6 +5033,12 @@
       var minD=o.r+e.r+1.6;
       if(od<minD && od>0.001){ var s=(minD-od)/minD; avx+=(odx/od)*s; avz+=(odz/od)*s; }
     }
+    // avoid platform footprint as a big soft obstacle
+    var pcx=(PLATFORM.x0+PLATFORM.x1)/2, pcz=(PLATFORM.z0+PLATFORM.z1)/2;
+    var pR = Math.max(PLATFORM.x1-PLATFORM.x0, PLATFORM.z1-PLATFORM.z0)/2 + 1.6;
+    var pdx=e.x-pcx, pdz=e.z-pcz, pd=Math.sqrt(pdx*pdx+pdz*pdz);
+    if(pd<pR && pd>0.001){ var ps=(pR-pd)/pR; avx+=(pdx/pd)*ps*1.3; avz+=(pdz/pd)*ps*1.3; }
+
     var mvx=ux+avx*1.5, mvz=uz+avz*1.5;
     var mlen=Math.sqrt(mvx*mvx+mvz*mvz)||1;
     e.x += (mvx/mlen)*e.speed*dt;
