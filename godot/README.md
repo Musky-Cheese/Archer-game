@@ -1,6 +1,6 @@
 # Last Archer — Godot
 
-Open `project.godot` with Godot 4.3 or newer and press F5. The main scene is the playable Night District training range. The earlier asset preview remains at `scenes/Main.tscn`.
+Open `project.godot` with Godot 4.7 or newer and press F5. The main scene is the playable Night District training range. The earlier asset preview remains at `scenes/Main.tscn`.
 
 Click the game to capture the mouse. WASD moves, Shift sprints, Space jumps, hold left mouse to draw and release to fire. Escape pauses and frees the mouse. Shoot all five green targets; R resets the cleared range.
 

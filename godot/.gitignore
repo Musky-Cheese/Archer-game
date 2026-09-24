@@ -1,3 +1,6 @@
 .godot/
 *.tmp
 *.import
+
+# Extracted by Godot from the arrow GLB
+assets/bow/la-arrow-v261_0.png
