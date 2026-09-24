@@ -1,0 +1,82 @@
+[
+  {
+    "file": "la-recurve-v261.glb",
+    "dimensions_m": [
+      0.102,
+      1.512,
+      0.219
+    ],
+    "triangles": 732,
+    "bytes": 154208,
+    "materials": 2,
+    "textures": 1,
+    "sourceOffset": [
+      0.009999999776482589,
+      -0.05600000172853482,
+      -0.03540000319480884
+    ],
+    "origin": "base-centre, Y-up, metres",
+    "pose": "ready",
+    "animations": []
+  },
+  {
+    "file": "la-grip-arm-v261.glb",
+    "dimensions_m": [
+      0.714,
+      0.751,
+      0.558
+    ],
+    "triangles": 1226,
+    "bytes": 133380,
+    "materials": 1,
+    "textures": 0,
+    "sourceOffset": [
+      -0.32269658520817757,
+      0.026550283655524167,
+      0.24348808638751512
+    ],
+    "origin": "base-centre, Y-up, metres",
+    "pose": "ready",
+    "animations": []
+  },
+  {
+    "file": "la-draw-arm-v261.glb",
+    "dimensions_m": [
+      0.612,
+      0.728,
+      0.801
+    ],
+    "triangles": 1148,
+    "bytes": 124948,
+    "materials": 1,
+    "textures": 0,
+    "sourceOffset": [
+      0.2714927748011824,
+      0.12744473373255832,
+      0.5447302446526538
+    ],
+    "origin": "base-centre, Y-up, metres",
+    "pose": "ready",
+    "animations": []
+  },
+  {
+    "file": "la-arrow-v261.glb",
+    "dimensions_m": [
+      0.029,
+      0.029,
+      0.907
+    ],
+    "triangles": 82,
+    "bytes": 77856,
+    "materials": 3,
+    "textures": 1,
+    "sourceOffset": [
+      0.0025000004097817602,
+      -0.014722432941198339,
+      -0.4362499928101897
+    ],
+    "origin": "base-centre, Y-up, metres",
+    "pose": "ready",
+    "animations": []
+  }
+]

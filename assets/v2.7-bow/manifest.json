@@ -1,0 +1,14 @@
+{
+  "file": "la-recurve-v27.glb",
+  "asset": "realistic anime first-person recurve bow",
+  "dimensions_m": [
+    0.11,
+    1.6,
+    0.24
+  ],
+  "triangles": 426,
+  "origin": "base-centre, Y-up, metres",
+  "materials": 7,
+  "textures": 0,
+  "source": "last-archer-v27-bow-working.blend"
+}

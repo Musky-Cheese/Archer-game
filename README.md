@@ -33,6 +33,10 @@ The game is self-contained in `index.html`. Three.js, the GLB loader, and the ru
 
 Every model is an independent binary GLB with a base-center pivot, meter scale, flat colors, no external textures, and its own preview. See [`assets/environment-kit/manifest.md`](assets/environment-kit/manifest.md) for dimensions, triangle counts, and file sizes.
 
+## Credits
+
+See [CREDITS.md](CREDITS.md) for third-party asset attribution. The future recurve bow is based on a CC BY 3.0 source asset: original bow model by signguy and rig by Jeffrey “Italic_” Hoover.
+
 ## Project files
 
 - `index.html` — current playable V2.3.1 build

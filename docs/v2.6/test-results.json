@@ -1,0 +1,126 @@
+{
+  "passed": true,
+  "checks": [
+    "exported rig has four clips and grounded death pose",
+    "keyboard movement",
+    "movement collision with shop",
+    "aiming and near/medium/far arrow hits",
+    "walls block arrows",
+    "nine actual projectile kills advance wave",
+    "death animation rendered",
+    "pickup reached by walking grants buff",
+    "street spawn approaches continuously",
+    "enemy contact damages player",
+    "death and restart restore run",
+    "pause stops movement",
+    "touch draw cancellation",
+    "stable resources during draw/release",
+    "portrait layout"
+  ],
+  "initial": {
+    "ready": true,
+    "assets": {
+      "requested": 1,
+      "loaded": 1,
+      "failed": 0,
+      "placements": 63
+    },
+    "solids": 14,
+    "state": "paused",
+    "player": {
+      "x": 0.2,
+      "z": 13.6
+    },
+    "health": 3,
+    "wave": 1,
+    "score": 0,
+    "enemies": 3,
+    "dead": 0,
+    "arrows": 0,
+    "buffs": [],
+    "render": {
+      "calls": 654,
+      "triangles": 206748
+    },
+    "memory": {
+      "geometries": 286,
+      "textures": 52
+    },
+    "charge": 0,
+    "weapon": {
+      "draw": false,
+      "release": 0,
+      "pull": 0
+    },
+    "frames": [
+      50,
+      50,
+      16.500000000000014,
+      50,
+      33.500000000000085,
+      49.900000000000055,
+      16.799999999999926,
+      16.39999999999997,
+      16.799999999999926,
+      16.799999999999926,
+      16.600000000000392,
+      16.599999999999504,
+      16.600000000000392,
+      16.70000000000016,
+      16.600000000000392,
+      16.799999999999038,
+      16.499999999999737,
+      16.700000000001047,
+      16.799999999999038,
+      16.600000000000392,
+      16.799999999999926,
+      16.500000000000625,
+      16.69999999999927,
+      16.600000000000392,
+      16.70000000000016,
+      16.899999999999693,
+      16.39999999999997,
+      16.70000000000016,
+      16.599999999999504,
+      16.90000000000058,
+      16.599999999999504,
+      16.600000000000392,
+      16.69999999999927,
+      16.800000000000814,
+      16.499999999999737,
+      16.70000000000016,
+      16.69999999999927
+    ]
+  },
+  "resources": {
+    "before": {
+      "geometries": 289,
+      "textures": 50
+    },
+    "after": {
+      "geometries": 289,
+      "textures": 50
+    }
+  },
+  "assetAudit": {
+    "animations": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "Death"
+    ],
+    "deathBounds": {
+      "min": [
+        -0.965642635005586,
+        0.009119308999685605,
+        -0.5805329412351906
+      ],
+      "max": [
+        0.965642635005586,
+        0.4731049343009624,
+        1.2353521046089053
+      ]
+    }
+  },
+  "errors": []
+}

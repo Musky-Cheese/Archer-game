@@ -1,5 +1,18 @@
 # V2.5 handoff — reference corner review
 
+**Newest checkpoint: V2.6.1 bow and hands study.** See
+`docs/v2.6.1/REVIEW.md`, `docs/v2.6.1/comparison.html`, and
+`prototypes/v2.6.1-bow-study.html`. Separate foreground-only preview; four
+portable GLBs are in `assets/v2.6.1-bow/`. Stop for visual review. No deployment.
+
+**Latest local checkpoint: V2.6 hero slice.** Open
+`prototypes/v2.6-hero-slice.html` and `docs/v2.6/comparison.html`.
+Read `docs/v2.6/REVIEW.md` for verified behavior and remaining visual gaps.
+The V2.5 integration lost architectural detail; V2.6 restores the intact world,
+adds new surface paint/reflections, a revised shambler and a connected bow rig.
+It is still visibly simpler than the concept. Stop for user review. No push,
+deployment or production-file replacement. The older checkpoints below are history.
+
 **Current checkpoint:** The user rejected the Stage 8 appearance. Open
 `prototypes/v2.5-reference-corner.html` and read `REFERENCE-CORNER-REVIEW.md`.
 This new bounded art study has a denser street, warm local lighting, a new

@@ -1,0 +1,34 @@
+[
+  {
+    "file": "la-shambler-v26.glb",
+    "dimensions_m": [
+      0.83,
+      1.807,
+      0.426
+    ],
+    "bounds_min": [
+      -0.415,
+      0,
+      -0.21295
+    ],
+    "bounds_max": [
+      0.415,
+      1.807,
+      0.21295
+    ],
+    "triangles": 1256,
+    "bytes": 245492,
+    "materials": [
+      "VertexPalette",
+      "SubtleEyeGlow"
+    ],
+    "textures": [],
+    "animations": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "Death"
+    ],
+    "description": "Layered worker shambler, angular face, individual fingers and subtle emissive eyes; articulated fall with root translation."
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "checks": [
+    "ready: nock attached to string",
+    "half: nock attached to string",
+    "draw: nock attached to string",
+    "release hides launched arrow",
+    "real fire button draws and shoots",
+    "existing aiming hits near/middle/far targets",
+    "no geometry/texture growth while posing",
+    "portrait draw pose and layout"
+  ],
+  "mem": {
+    "before": {
+      "geometries": 238,
+      "textures": 48
+    },
+    "after": {
+      "geometries": 238,
+      "textures": 48
+    }
+  },
+  "errors": []
+}
