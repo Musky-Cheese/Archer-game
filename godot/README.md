@@ -9,7 +9,7 @@ This is the portable Godot workspace for the game. It is a clean starting point 
 3. Open the `godot` folder in Godot using **Import** and select `project.godot`.
 4. Wait for Godot to import the GLB models, then press **F6** or **F5**.
 
-The project opens a dark playable scene with first-person movement. The bow, arrow, and arm GLBs are in `assets/bow/`; their source manifests remain in the browser project folders.
+The project opens a dark playable scene with first-person movement. The bow and arrow GLBs are in `assets/bow/`; reusable city models are in `assets/environment/`. Their source manifests remain in the browser project folders.
 
 ## What belongs here
 

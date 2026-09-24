@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
 [ext_resource type="Script" path="res://scripts/weapon_preview.gd" id="2_weapon"]
+[ext_resource type="Script" path="res://scripts/environment_preview.gd" id="3_environment"]
 
 [sub_resource type="Environment" id="Environment_main"]
 background_mode = 1
@@ -45,6 +46,9 @@ omni_range = 12.0
 [node name="Road" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_road")
 material_override = SubResource("Material_road")
+
+[node name="EnvironmentAssets" type="Node3D" parent="."]
+script = ExtResource("3_environment")
 
 [node name="Player" type="Node3D" parent="."]
 position = Vector3(0, 1.7, 10)
