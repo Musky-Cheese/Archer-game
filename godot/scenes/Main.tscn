@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://scripts/weapon_preview.gd" id="2_weapon"]
+
+[sub_resource type="Environment" id="Environment_main"]
+background_mode = 1
+background_color = Color(0.027, 0.047, 0.071, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.20, 0.30, 0.40, 1)
+ambient_light_energy = 0.7
+tonemap_mode = 2
+tonemap_exposure = 0.9
+glow_enabled = true
+glow_intensity = 0.7
+fog_enabled = true
+fog_light_color = Color(0.08, 0.13, 0.18, 1)
+fog_density = 0.012
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_road"]
+size = Vector2(40, 96)
+
+[sub_resource type="StandardMaterial3D" id="Material_road"]
+albedo_color = Color(0.12, 0.16, 0.20, 1)
+roughness = 0.82
+
+[node name="LastArcherGodot" type="Node3D"]
+script = ExtResource("1_main")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_main")
+
+[node name="Moon" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-54, -32, 0)
+light_color = Color(0.48, 0.65, 0.90, 1)
+light_energy = 1.1
+shadow_enabled = true
+
+[node name="WarmLamp" type="OmniLight3D" parent="."]
+position = Vector3(-2.8, 3.5, -4.5)
+light_color = Color(1, 0.64, 0.36, 1)
+light_energy = 8.0
+omni_range = 12.0
+
+[node name="Road" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_road")
+material_override = SubResource("Material_road")
+
+[node name="Player" type="Node3D" parent="."]
+position = Vector3(0, 1.7, 10)
+
+[node name="Camera3D" type="Camera3D" parent="Player"]
+current = true
+
+[node name="WeaponAnchor" type="Node3D" parent="Player/Camera3D"]
+position = Vector3(0.28, -0.28, -0.9)
+rotation_degrees = Vector3(0, 40, -8)
+script = ExtResource("2_weapon")
