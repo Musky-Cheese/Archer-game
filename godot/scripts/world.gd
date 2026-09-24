@@ -12,6 +12,7 @@ const ADS = {
 }
 var player: CharacterBody3D
 var paused := true
+var training_mode := true
 var targets: Array[StaticBody3D] = []
 var arrows: Array[Dictionary] = []
 var hud: Label
@@ -82,9 +83,10 @@ func build_world() -> void:
 	Shape.box(self, Vector3(0,2,31), Vector3(22,4,1), Color("28343f"), true)
 	for index in range(20):
 		Shape.box(self, Vector3(0,0.008,27-index*3), Vector3(0.1,0.008,1.5), Color("ad9870"))
-	for index in range(5):
-		var p := Vector3(-3.5+float(index%2)*7,0,-1-index*5)
-		create_target(p)
+	if training_mode:
+		for index in range(5):
+			var p := Vector3(-3.5+float(index%2)*7,0,-1-index*5)
+			create_target(p)
 	for index in range(6):
 		var key: String = ADS.keys()[index]
 		var z := 12.0-index*7.5
@@ -169,6 +171,9 @@ func _physics_process(delta: float) -> void:
 				status_time = 2
 				targets.erase(result.collider)
 				result.collider.queue_free()
+			elif result.collider.has_meta("zombie"):
+				hits += 1
+				result.collider.take_arrow(1)
 			node.queue_free()
 			arrows.remove_at(i)
 		elif item.age > 5:
@@ -177,7 +182,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			node.position = end
 			node.look_at(end+item.velocity)
-	if Input.is_physical_key_pressed(KEY_R) and targets.is_empty():
+	if training_mode and Input.is_physical_key_pressed(KEY_R) and targets.is_empty():
 		for index in range(5):
 			create_target(Vector3(-3.5+float(index%2)*7,0,-1-index*5))
 		status = "Training targets reset"

@@ -1,11 +1,9 @@
 # Last Archer — Godot
 
-Open `project.godot` with Godot 4.7 or newer and press F5. The main scene is the playable Night District training range. The earlier asset preview remains at `scenes/Main.tscn`.
+Open `project.godot` with Godot 4.7 or newer and press F5. The main scene is **Night District**, a first-person bow survival prototype. Click the game to capture the mouse. Use WASD to move, Shift to sprint, Space to jump, hold the left mouse button to draw, release to fire, and Escape to pause.
 
-Click the game to capture the mouse. WASD moves, Shift sprints, Space jumps, hold left mouse to draw and release to fire. Escape pauses and frees the mouse. Shoot all five green targets; R resets the cleared range.
+Shamblers pursue and damage you. Each takes two arrows to defeat. Clear a wave to start the next; your score, health, and wave appear on screen. You have three health points, and R restarts after game over. The street includes the handoff's billboard, vending machine, streetlight, barricade, crate, and car models.
 
-The training range includes a nighttime street, target scoring, arrow gravity and collision, and six fictional sponsor signs. Its bow and city are procedural placeholders. The handoff's reusable GLB bow, arrow, and environment assets remain in `assets/` for integration. This is a playable Godot prototype, not yet the full browser game's zombies, waves, upgrades, mobile controls, or audio. The published browser game remains at the repository root.
+The earlier five-target range remains at `scenes/TrainingRange.tscn`, and the original GLB asset preview remains at `scenes/Main.tscn`. The playable bow is still procedural while its GLB integration is refined. Pickups, upgrades, mobile controls, and audio from the browser game are not yet ported. The browser game remains at the repository root.
 
-For a quick headless gameplay check, run Godot from this folder with `--headless -- --smoke-test`. The check covers grounded movement, target creation, projectile collision, and score.
-
-See [the handoff notes](../docs/GODOT_HANDOFF.md) and [credits](../CREDITS.md) before replacing placeholder art.
+Run `godot --headless --path . -- --smoke-test` from this folder to check arrow damage, scoring, health, and the initial wave. See [the handoff notes](../docs/GODOT_HANDOFF.md) and [credits](../CREDITS.md) for asset context.
