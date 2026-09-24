@@ -21,13 +21,12 @@ The target is a dark, realistic-anime city street: crisp low-poly forms, layered
 
 `index.html` remains the published Three.js game. Do not replace it while the Godot version is under construction. Browser prototypes in `prototypes/` preserve the gameplay and visual experiments that should be ported deliberately.
 
+## Current playable milestone
+
+The main Godot scene is now `godot/scenes/TrainingRange.tscn`. It has CharacterBody3D collision and camera movement, bow draw and release, arrow gravity and hit detection, five targets, score, and a procedural night street. The earlier GLB preview is preserved at `godot/scenes/Main.tscn`.
+
 ## Recommended next task
 
-Port the player loop into Godot in this order:
-
-1. CharacterBody3D collision and camera movement.
-2. First-person bow draw, release, projectile, and hit detection.
-3. One shambler with walk, attack, damage, death, and restart.
-4. Waves, pickups, HUD, then expand the single street slice.
+Integrate the handoff's GLB bow and environment props into the playable scene, then add one shambler with walk, attack, damage, death, and restart. After that, port waves, pickups, and upgrades.
 
 Keep assets as separate GLBs and preserve the attribution in `CREDITS.md` for the CC BY bow source.

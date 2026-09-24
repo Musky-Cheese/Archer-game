@@ -1,21 +1,11 @@
-# Last Archer — Godot handoff
+# Last Archer — Godot
 
-This is the portable Godot workspace for the game. It is a clean starting point for moving the browser prototype into Godot without overwriting the working Three.js version.
+Open `project.godot` with Godot 4.3 or newer and press F5. The main scene is the playable Night District training range. The earlier asset preview remains at `scenes/Main.tscn`.
 
-## On the PC
+Click the game to capture the mouse. WASD moves, Shift sprints, Space jumps, hold left mouse to draw and release to fire. Escape pauses and frees the mouse. Shoot all five green targets; R resets the cleared range.
 
-1. Install Godot 4.3 or newer.
-2. Clone the `Musky-Cheese/Archer-game` GitHub repository.
-3. Open the `godot` folder in Godot using **Import** and select `project.godot`.
-4. Wait for Godot to import the GLB models, then press **F6** or **F5**.
+The training range includes a nighttime street, target scoring, arrow gravity and collision, and six fictional sponsor signs. Its bow and city are procedural placeholders. The handoff's reusable GLB bow, arrow, and environment assets remain in `assets/` for integration. This is a playable Godot prototype, not yet the full browser game's zombies, waves, upgrades, mobile controls, or audio. The published browser game remains at the repository root.
 
-The project opens a dark playable scene with first-person movement. The bow and arrow GLBs are in `assets/bow/`; reusable city models are in `assets/environment/`. Their source manifests remain in the browser project folders.
+For a quick headless gameplay check, run Godot from this folder with `--headless -- --smoke-test`. The check covers grounded movement, target creation, projectile collision, and score.
 
-## What belongs here
-
-- `assets/` — reusable GLB models and compact texture assets.
-- `scenes/` — Godot scenes.
-- `scripts/` — gameplay and visual scripts.
-- `reference/` — browser prototypes and visual handoff notes; these are reference only, not runtime assets.
-
-The browser game remains in the repository root. Do not delete it while the Godot version is being built.
+See [the handoff notes](../docs/GODOT_HANDOFF.md) and [credits](../CREDITS.md) before replacing placeholder art.
